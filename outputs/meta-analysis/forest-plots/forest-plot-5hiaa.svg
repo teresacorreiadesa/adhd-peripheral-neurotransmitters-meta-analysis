@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="978.66669"
+   height="249.33333"
+   viewBox="0 0 978.66669 249.33333"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <g
+     id="g8"
+     transform="matrix(1.3333333,0,0,-1.3333333,0,249.33333)">
+    <g
+       id="g10" />
+    <g
+       id="g12" />
+    <g
+       id="g14">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,20.23,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text18"><tspan
+           x="0 8.0039997 12 19.332001 26.483999"
+           y="0"
+           id="tspan16">Study</tspan></text>
+    </g>
+    <g
+       id="g20">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,20.23,53.29)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text24"><tspan
+           x="0 8.6639996 15.336 22.667999 30 37.332001 48 51.335999 58.007999 62.004002 65.879997 72.552002 79.223999 83.220001 89.891998 93.227997 103.896 111.228 118.56 125.232"
+           y="0"
+           id="tspan22">Random effects model</tspan></text>
+    </g>
+    <g
+       id="g26">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,20.23,24.47)"
+         style="font-variant:normal;font-weight:normal;font-size:11px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text30"><tspan
+           x="0 7.9419999 14.058 17.115999 23.232 26.895 33.011002 39.126999 45.243 51.359001 57.474998 59.917 62.974998 68.474998 71.532997"
+           y="0"
+           id="tspan28">Heterogeneity: </tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,94.82,24.47)"
+         style="font-style:oblique;font-variant:normal;font-size:11px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Oblique;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text34"><tspan
+           x="0"
+           y="0"
+           id="tspan32">I</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,99.06,29.93)"
+         style="font-variant:normal;font-weight:normal;font-size:8px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text38"><tspan
+           x="0"
+           y="0"
+           id="tspan36">2</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,106.568,24.47)"
+         style="font-variant:normal;font-weight:normal;font-size:11px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text42"><tspan
+           x="0 6.4239998 9.4820004 15.598 21.714001 24.771999 30.888"
+           y="0"
+           id="tspan40">= 74.9%</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,147.23,24.47)"
+         style="font-variant:normal;font-weight:normal;font-size:11px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text46"><tspan
+           x="0 3.0580001"
+           y="0"
+           id="tspan44">, </tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,153.35,24.47)"
+         style="font-variant:normal;font-weight:normal;font-size:11px;font-family:Symbol;-inkscape-font-specification:Symbol;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text50"><tspan
+           x="0"
+           y="0"
+           id="tspan48">τ</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,158.18,29.93)"
+         style="font-variant:normal;font-weight:normal;font-size:8px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text54"><tspan
+           x="0"
+           y="0"
+           id="tspan52">2</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,165.688,24.47)"
+         style="font-variant:normal;font-weight:normal;font-size:11px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text58"><tspan
+           x="0 6.4239998 9.4820004 15.598 18.656 24.771999 30.888 37.004002"
+           y="0"
+           id="tspan56">= 0.3124</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,208.81,24.47)"
+         style="font-variant:normal;font-weight:normal;font-size:11px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text62"><tspan
+           x="0 3.0580001"
+           y="0"
+           id="tspan60">, </tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,214.92,24.47)"
+         style="font-style:oblique;font-variant:normal;font-size:11px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Oblique;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text66"><tspan
+           x="0"
+           y="0"
+           id="tspan64">p</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,224.988,24.47)"
+         style="font-variant:normal;font-weight:normal;font-size:11px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text70"><tspan
+           x="0 6.4239998 9.4820004 15.598 18.656 24.771999 30.888 37.004002"
+           y="0"
+           id="tspan68">= 0.0186</tspan></text>
+    </g>
+    <g
+       id="g72">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,20.23,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text76"><tspan
+           x="0 7.6440001 14.316 20.316 26.988001 33.66 40.332001 43.667999 50.34 57.012001 63.683998"
+           y="0"
+           id="tspan74">Kusaga 2002</tspan></text>
+    </g>
+    <g
+       id="g78">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,20.23,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text82"><tspan
+           x="0 9.9960003 16.667999 20.844 23.507999 30.18 34.655998 37.992001 43.992001 47.327999 54 60.672001 67.344002"
+           y="0"
+           id="tspan80">Moriarty 2011</tspan></text>
+    </g>
+    <g
+       id="g84">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,20.23,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text88"><tspan
+           x="0 9.3360004 16.007999 22.68 29.351999 35.352001 38.688 45.360001 52.032001 58.703999 65.375999"
+           y="0"
+           id="tspan86">Oades 2010a</tspan></text>
+    </g>
+    <g
+       id="g90">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,159.15,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text94"><tspan
+           x="0"
+           y="0"
+           id="tspan92">N</tspan></text>
+    </g>
+    <g
+       id="g96" />
+    <g
+       id="g98">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,154.47,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text102"><tspan
+           x="0 6.6719999"
+           y="0"
+           id="tspan100">37</tspan></text>
+    </g>
+    <g
+       id="g104">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,154.47,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text108"><tspan
+           x="0 6.6719999"
+           y="0"
+           id="tspan106">15</tspan></text>
+    </g>
+    <g
+       id="g110">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,154.47,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text114"><tspan
+           x="0 6.6719999"
+           y="0"
+           id="tspan112">35</tspan></text>
+    </g>
+    <g
+       id="g116">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,186.17,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text120"><tspan
+           x="0 9.9960003 16.667999 23.34"
+           y="0"
+           id="tspan118">Mean</tspan></text>
+    </g>
+    <g
+       id="g122" />
+    <g
+       id="g124">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,193.49,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text128"><tspan
+           x="0 6.6719999 10.008 16.68"
+           y="0"
+           id="tspan126">4.31</tspan></text>
+    </g>
+    <g
+       id="g130">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,173.48,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text134"><tspan
+           x="0 6.6719999 13.344 20.016001 26.688 30.024 36.695999"
+           y="0"
+           id="tspan132">1087.54</tspan></text>
+    </g>
+    <g
+       id="g136">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,186.82,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text140"><tspan
+           x="0 6.6719999 13.344 16.68 23.351999"
+           y="0"
+           id="tspan138">12.84</tspan></text>
+    </g>
+    <g
+       id="g142">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,242.54,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text146"><tspan
+           x="0 8.0039997"
+           y="0"
+           id="tspan144">SD</tspan></text>
+    </g>
+    <g
+       id="g148" />
+    <g
+       id="g150">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,235.86,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text154"><tspan
+           x="0 6.6719999 10.008 16.68"
+           y="0"
+           id="tspan152">2.21</tspan></text>
+    </g>
+    <g
+       id="g156">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,222.52,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text160"><tspan
+           x="0 6.6719999 13.344 20.016001 23.351999 30.024"
+           y="0"
+           id="tspan158">354.38</tspan></text>
+    </g>
+    <g
+       id="g162">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,235.86,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text166"><tspan
+           x="0 6.6719999 10.008 16.68"
+           y="0"
+           id="tspan164">5.12</tspan></text>
+    </g>
+    <g
+       id="g168">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,224.56,154.09)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text172"><tspan
+           x="0 8.6639996 17.327999 25.992001"
+           y="0"
+           id="tspan170">ADHD</tspan></text>
+    </g>
+    <g
+       id="g174">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,269.56,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text178"><tspan
+           x="0"
+           y="0"
+           id="tspan176">N</tspan></text>
+    </g>
+    <g
+       id="g180" />
+    <g
+       id="g182">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,264.88,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text186"><tspan
+           x="0 6.6719999"
+           y="0"
+           id="tspan184">21</tspan></text>
+    </g>
+    <g
+       id="g188">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,264.88,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text192"><tspan
+           x="0 6.6719999"
+           y="0"
+           id="tspan190">20</tspan></text>
+    </g>
+    <g
+       id="g194">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,264.88,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text198"><tspan
+           x="0 6.6719999"
+           y="0"
+           id="tspan196">28</tspan></text>
+    </g>
+    <g
+       id="g200">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,296.59,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text204"><tspan
+           x="0 9.9960003 16.667999 23.34"
+           y="0"
+           id="tspan202">Mean</tspan></text>
+    </g>
+    <g
+       id="g206" />
+    <g
+       id="g208">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,303.91,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text212"><tspan
+           x="0 6.6719999 10.008 16.68"
+           y="0"
+           id="tspan210">4.38</tspan></text>
+    </g>
+    <g
+       id="g214">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,283.89,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text218"><tspan
+           x="0 6.6719999 13.344 20.016001 26.688 30.024 36.695999"
+           y="0"
+           id="tspan216">2093.16</tspan></text>
+    </g>
+    <g
+       id="g220">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,297.24,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text224"><tspan
+           x="0 6.6719999 13.344 16.68 23.351999"
+           y="0"
+           id="tspan222">12.33</tspan></text>
+    </g>
+    <g
+       id="g226">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,359.63,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text230"><tspan
+           x="0 8.0039997"
+           y="0"
+           id="tspan228">SD</tspan></text>
+    </g>
+    <g
+       id="g232" />
+    <g
+       id="g234">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,352.95,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text238"><tspan
+           x="0 6.6719999 10.008 16.68"
+           y="0"
+           id="tspan236">5.31</tspan></text>
+    </g>
+    <g
+       id="g240">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,332.93,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text244"><tspan
+           x="0 6.6719999 13.344 20.016001 26.688 30.024 36.695999"
+           y="0"
+           id="tspan242">1116.61</tspan></text>
+    </g>
+    <g
+       id="g246">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,352.95,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text250"><tspan
+           x="0 6.6719999 10.008 16.68"
+           y="0"
+           id="tspan248">5.43</tspan></text>
+    </g>
+    <g
+       id="g252">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,333.88,154.09)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text256"><tspan
+           x="0 8.6639996 15.996 23.327999 27.323999 31.752001 39.084"
+           y="0"
+           id="tspan254">Control</tspan></text>
+    </g>
+    <g
+       id="g258">
+      <path
+         d="m 467.01,50.4 v 72"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path260" />
+      <path
+         d="m 452.87,57.6 v 64.8"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:0, 3;stroke-dashoffset:0;stroke-opacity:1"
+         id="path262" />
+    </g>
+    <g
+       id="g264">
+      <path
+         d="M 397.82,50.4 H 536.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path266" />
+      <path
+         d="M 397.82,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path268" />
+      <path
+         d="M 420.88,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path270" />
+      <path
+         d="M 443.94,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path272" />
+      <path
+         d="M 467.01,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path274" />
+      <path
+         d="M 490.07,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path276" />
+      <path
+         d="M 513.14,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path278" />
+      <path
+         d="M 536.2,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path280" />
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,385.97,24.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text284"><tspan
+           x="0 7.0079999 13.68 17.016001"
+           y="0"
+           id="tspan282">−1.5</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,414.04,24.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text288"><tspan
+           x="0 7.0079999"
+           y="0"
+           id="tspan286">−1</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,432.1,24.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text292"><tspan
+           x="0 7.0079999 13.68 17.016001"
+           y="0"
+           id="tspan290">−0.5</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,463.67,24.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text296"><tspan
+           x="0"
+           y="0"
+           id="tspan294">0</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,481.73,24.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text300"><tspan
+           x="0 6.6719999 10.008"
+           y="0"
+           id="tspan298">0.5</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,509.8,24.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text304"><tspan
+           x="0"
+           y="0"
+           id="tspan302">1</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,527.86,24.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text308"><tspan
+           x="0 6.6719999 10.008"
+           y="0"
+           id="tspan306">1.5</tspan></text>
+      <path
+         d="M 397.82,50.4 H 536.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path310" />
+      <path
+         d="M 397.82,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path312" />
+      <path
+         d="M 420.88,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path314" />
+      <path
+         d="M 443.94,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path316" />
+      <path
+         d="M 467.01,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path318" />
+      <path
+         d="M 490.07,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path320" />
+      <path
+         d="M 513.14,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path322" />
+      <path
+         d="M 536.2,50.4 V 43.2"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path324" />
+    </g>
+    <g
+       id="g326">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,412.11,154.09)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text330"><tspan
+           x="0 8.0039997 12 18.672001 26.004 33.335999 40.007999 44.436001 51.768002 55.104 61.776001 68.447998 75.779999 79.115997 89.112 95.783997 102.456"
+           y="0"
+           id="tspan328">Standardised Mean</tspan></text>
+    </g>
+    <g
+       id="g332">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,437.73,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text336"><tspan
+           x="0 8.6639996 12 15.996 19.872 26.544001 31.212 37.883999 45.216 51.888"
+           y="0"
+           id="tspan334">Difference</tspan></text>
+    </g>
+    <g
+       id="g338">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,350.63,10.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text342"><tspan
+           x="0 3.336 10.008 16.007999 20.004 26.676001 33.348 39.348 46.02 52.692001 56.028 58.692001 65.363998 68.699997 74.699997 81.372002 88.043999 91.379997 95.375999 102.048 104.712"
+           y="0"
+           id="tspan340">Increased in controls</tspan></text>
+    </g>
+    <g
+       id="g344">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,472.68,10.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text348"><tspan
+           x="0 3.336 10.008 16.007999 20.004 26.676001 33.348 39.348 46.02 52.692001 56.028 58.692001 65.363998 68.699997 76.704002 85.367996 94.031998"
+           y="0"
+           id="tspan346">Increased in ADHD</tspan></text>
+    </g>
+    <g
+       id="g350" />
+    <g
+       id="g352">
+      <path
+         d="m 419.78,57.6 33.09,4.61 33.1,-4.61 -33.1,-4.61 z"
+         style="fill:#bebebe;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path354" />
+    </g>
+    <g
+       id="g356">
+      <path
+         d="m 460.45,109.52 h 11.36 v 11.36 h -11.36 z"
+         style="fill:#bebebe;fill-opacity:1;fill-rule:nonzero;stroke:#bebebe;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path358" />
+      <path
+         d="m 466.13,113.76 v 2.88"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path360" />
+      <path
+         d="m 441.43,115.2 h 49.4"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path362" />
+    </g>
+    <g
+       id="g364">
+      <path
+         d="m 410.13,95.53 h 10.54 v 10.54 h -10.54 z"
+         style="fill:#bebebe;fill-opacity:1;fill-rule:nonzero;stroke:#bebebe;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path366" />
+      <path
+         d="m 415.4,99.36 v 2.88"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path368" />
+      <path
+         d="m 381.97,100.8 h 66.85"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path370" />
+    </g>
+    <g
+       id="g372">
+      <path
+         d="m 465.65,80.64 h 11.52 v 11.52 h -11.52 z"
+         style="fill:#bebebe;fill-opacity:1;fill-rule:nonzero;stroke:#bebebe;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path374" />
+      <path
+         d="m 471.41,84.96 v 2.88"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path376" />
+      <path
+         d="m 448.48,86.4 h 45.87"
+         style="fill:none;stroke:#000000;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+         id="path378" />
+    </g>
+    <g
+       id="g380">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,561.41,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text384"><tspan
+           x="0 8.0039997 18"
+           y="0"
+           id="tspan382">SMD</tspan></text>
+    </g>
+    <g
+       id="g386">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,557.72,53.29)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text390"><tspan
+           x="0 7.0079999 13.68 17.016001 23.688"
+           y="0"
+           id="tspan388">−0.31</tspan></text>
+    </g>
+    <g
+       id="g392">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,557.72,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text396"><tspan
+           x="0 7.0079999 13.68 17.016001 23.688"
+           y="0"
+           id="tspan394">−0.02</tspan></text>
+    </g>
+    <g
+       id="g398">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,557.72,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text402"><tspan
+           x="0 7.0079999 13.68 17.016001 23.688"
+           y="0"
+           id="tspan400">−1.12</tspan></text>
+    </g>
+    <g
+       id="g404">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,564.73,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text408"><tspan
+           x="0 6.6719999 10.008 16.68"
+           y="0"
+           id="tspan406">0.10</tspan></text>
+    </g>
+    <g
+       id="g410">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,624.79,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text414"><tspan
+           x="0 6.6719999 13.344 24.011999 31.02 39.683998"
+           y="0"
+           id="tspan412">95%−CI</tspan></text>
+    </g>
+    <g
+       id="g416">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,595.44,53.29)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text420"><tspan
+           x="0 3.9960001 11.004 17.676001 21.011999 27.684 34.355999 38.352001 45.023998 51.695999 55.032001 61.703999 68.375999"
+           y="0"
+           id="tspan418">[−1.02; 0.41]</tspan></text>
+    </g>
+    <g
+       id="g422">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,597.42,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text426"><tspan
+           x="0 3.336 10.344 17.016001 20.351999 27.024 33.695999 37.032001 43.703999 50.375999 53.712002 60.383999 67.056"
+           y="0"
+           id="tspan424">[−0.55; 0.52]</tspan></text>
+    </g>
+    <g
+       id="g428">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,593.75,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text432"><tspan
+           x="0 3.336 10.344 17.016001 20.351999 27.024 33.695999 37.032001 40.368 47.375999 54.048 57.383999 64.056 70.727997"
+           y="0"
+           id="tspan430">[−1.84; −0.39]</tspan></text>
+    </g>
+    <g
+       id="g434">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,597.42,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text438"><tspan
+           x="0 3.336 10.344 17.016001 20.351999 27.024 33.695999 37.032001 43.703999 50.375999 53.712002 60.383999 67.056"
+           y="0"
+           id="tspan436">[−0.40; 0.59]</tspan></text>
+    </g>
+    <g
+       id="g440">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,674.6,139.69)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text444"><tspan
+           x="0 10.908 17.58 20.916 28.247999 35.580002"
+           y="0"
+           id="tspan442">Weight</tspan></text>
+    </g>
+    <g
+       id="g446">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,673.48,53.29)"
+         style="font-variant:normal;font-weight:bold;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica-Bold;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text450"><tspan
+           x="0 6.6719999 13.344 20.016001 23.351999 30.024"
+           y="0"
+           id="tspan448">100.0%</tspan></text>
+    </g>
+    <g
+       id="g452">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,680.15,110.89)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text456"><tspan
+           x="0 6.6719999 13.344 16.68 23.351999"
+           y="0"
+           id="tspan454">34.6%</tspan></text>
+    </g>
+    <g
+       id="g458">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,680.15,96.49)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text462"><tspan
+           x="0 6.6719999 13.344 16.68 23.351999"
+           y="0"
+           id="tspan460">29.8%</tspan></text>
+    </g>
+    <g
+       id="g464">
+      <text
+         xml:space="preserve"
+         transform="matrix(1,0,0,-1,680.15,82.09)"
+         style="font-variant:normal;font-weight:normal;font-size:12px;font-family:Helvetica;-inkscape-font-specification:Helvetica;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="text468"><tspan
+           x="0 6.6719999 13.344 16.68 23.351999"
+           y="0"
+           id="tspan466">35.6%</tspan></text>
+    </g>
+    <g
+       id="g470" />
+    <g
+       id="g472" />
+  </g>
+</svg>
