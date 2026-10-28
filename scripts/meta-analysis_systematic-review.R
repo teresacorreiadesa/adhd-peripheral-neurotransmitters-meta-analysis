@@ -1,2013 +1,1380 @@
-###########################################################################
+# =============================================================================
+#  META-ANALYSIS - optimised
+# =============================================================================
+#
+# PURPOSE: synthesise evidence on peripheral levels of catecholamines (DA, AD,
+# NA), 5-HT, and their metabolites (DOPAC, HVA, 5-HIAA) in individuals with
+# ADHD compared to typically developing controls, and to examine the extent
+# and sources of heterogeneity across studies.
+#
+# RESOURCES:
+# - https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10
+# - https://doing-meta.guide
+# - https://www.r-bloggers.com/2021/08/meta-analysis-in-r/
+#
+# =============================================================================
 
-#' # [Meta-Analysis](https://www.r-bloggers.com/2021/08/meta-analysis-in-r/)
-
-###########################################################################
-
+# =============================================================================
+# LOAD LIBRARIES
+# =============================================================================
+library(here)
+library(tidyverse)
 library(readxl)
-dopamine <- read_excel("/Users/teresacorreiadesa/R/Meta-Analysis/data/data_meta-analysis.xlsx", sheet = 1)
-adrenaline <- read_excel("/Users/teresacorreiadesa/R/Meta-Analysis/data/data_meta-analysis.xlsx", sheet = 2)
-noradrenaline <- read_excel("/Users/teresacorreiadesa/R/Meta-Analysis/data/data_meta-analysis.xlsx", sheet = 3)
-serotonin <- read_excel("/Users/teresacorreiadesa/R/Meta-Analysis/data/data_meta-analysis.xlsx", sheet = 4)
-dopac <- read_excel("/Users/teresacorreiadesa/R/Meta-Analysis/data/data_meta-analysis.xlsx", sheet = 5)
-hva <- read_excel("/Users/teresacorreiadesa/R/Meta-Analysis/data/data_meta-analysis.xlsx", sheet = 6)
-hiaa <- read_excel("/Users/teresacorreiadesa/R/Meta-Analysis/data/data_meta-analysis.xlsx", sheet = 7)
-# View(data)
-
-## ------------------------------------------------------------------------
-#' ## Meta-Analysis
-## ------------------------------------------------------------------------
+library(writexl)
 library(meta)
-# meta-analysis with continuous outcome
-# common/random indicator: whether a common/random effects meta-analysis is to be conducted.
-# sm: Three different types of summary measures to chosen,standardized mean difference (SMD), mean difference (MD), ratio of means (ROM)
-## ------------------------------------------------------------------------
-res.dopamine <- metacont(n.e., mean.e., sd.e., 
-                        n.c., mean.c., sd.c.,
-                        common = F, random = T, studlab = Study,
-                        data = dopamine, sm = "SMD")
-
-res.adrenaline <- metacont(n.e., mean.e., sd.e., 
-                        n.c., mean.c., sd.c.,
-                        common = F, random = T, studlab = Study,
-                        data = adrenaline, sm = "SMD")
-
-res.noradrenaline <- metacont(n.e., mean.e., sd.e., 
-                        n.c., mean.c., sd.c.,
-                        common = F, random = T, studlab = Study,
-                        data = noradrenaline, sm = "SMD")
-
-res.serotonin <- metacont(n.e., mean.e., sd.e., 
-                        n.c., mean.c., sd.c.,
-                        common = F, random = T, studlab = Study,
-                        data = serotonin, sm = "SMD")
-
-res.dopac <-  metacont(n.e., mean.e., sd.e., 
-                        n.c., mean.c., sd.c.,
-                        common = F, random = T, studlab = Study,
-                        data = dopac, sm = "SMD")
-
-res.hva <-  metacont(n.e., mean.e., sd.e., 
-                        n.c., mean.c., sd.c.,
-                        common = F, random = T, studlab = Study,
-                        data = hva, sm = "SMD")
-
-res.hiaa <- metacont(n.e., mean.e., sd.e., 
-                        n.c., mean.c., sd.c.,
-                        common = F, random = T, studlab = Study,
-                        data = hiaa, sm = "SMD")
-
-
-## ------------------------------------------------------------------------
-res.dopamine
-## ------------------------------------------------------------------------
-res.adrenaline
-## ------------------------------------------------------------------------
-res.noradrenaline
-## ------------------------------------------------------------------------
-res.serotonin
-## ------------------------------------------------------------------------
-res.dopac
-## ------------------------------------------------------------------------
-res.hva
-## ------------------------------------------------------------------------
-res.hiaa
-
-## ------------------------------------------------------------------------
-#' ## Forest Plot
-## ------------------------------------------------------------------------
-## hard space: option + space
-
-dir.create("outputs/meta-analysis/forest-plots", recursive = TRUE) # create directory to save forest plots
-
-forest(res.dopamine, 
-       leftcols = c('studlab', 'n.e.', 'mean.e.', 'sd.e.', 'n.c.', 'mean.c.', 'sd.c.'), 
-       leftlabs = c('Study', 'N', 'Mean', 'SD', 'N', 'Mean', 'SD'), # change labels
-       label.e.attach = 'sd.e.', # add group heading to appropriate place
-       label.c.attach = 'sd.c.', # same as above but for other group
-       label.e = 'ADHD', # name group
-       label.c = 'Control', # ...
-       label.left = 'Increased in controls', 
-       label.right = 'Increased in ADHD',
-       just = "right", just.addcols = "right", just.studlab = "left", # justify text
-       addrows.below.overall = 1,
-       file = 'outputs/meta-analysis/forest-plots/forest-plot-dopamine.pdf', width = 10) 
-
-forest(res.adrenaline,
-       leftcols = c('studlab', 'n.e.', 'mean.e.', 'sd.e.', 'n.c.', 'mean.c.', 'sd.c.'), 
-       leftlabs = c('Study', 'N', 'Mean', 'SD', 'N', 'Mean', 'SD'), # change labels
-       label.e.attach = 'sd.e.', # add group heading to appropriate place
-       label.c.attach = 'sd.c.', # same as above but for other group
-       label.e = 'ADHD', # name group
-       label.c = 'Control', # ...
-       label.left = 'Increased in controls',
-       label.right = 'Increased in ADHD',
-       just = "right", just.addcols = "right", just.studlab = "left", # justify text
-       addrows.below.overall = 1,
-       file = 'outputs/meta-analysis/forest-plots/forest-plot-adrenaline.pdf', width = 10.1) 
-
-forest(res.noradrenaline,
-       leftcols = c('studlab', 'n.e.', 'mean.e.', 'sd.e.', 'n.c.', 'mean.c.', 'sd.c.'), 
-       leftlabs = c('Study', 'N', 'Mean', 'SD', 'N', 'Mean', 'SD'), # change labels
-       label.e.attach = 'sd.e.', # add group heading to appropriate place
-       label.c.attach = 'sd.c.', # same as above but for other group
-       label.e = 'ADHD', # name group
-       label.c = 'Control', # ...
-       label.left = 'Increased in controls',
-       label.right = 'Increased in ADHD',
-       just = "right", just.addcols = "right", just.studlab = "left", # justify text
-       addrows.below.overall = 1,
-       file = 'outputs/meta-analysis/forest-plots/forest-plot-noradrenaline.pdf', width = 10.3) 
-
-forest(res.serotonin, 
-       leftcols = c('studlab', 'n.e.', 'mean.e.', 'sd.e.', 'n.c.', 'mean.c.', 'sd.c.'), 
-       leftlabs = c('Study', 'N', 'Mean', 'SD', 'N', 'Mean', 'SD'), # change labels
-       label.e.attach = 'sd.e.', # add group heading to appropriate place
-       label.c.attach = 'sd.c.', # same as above but for other group
-       label.e = 'ADHD', # name group
-       label.c = 'Control', # ...
-       label.left = 'Increased in controls',
-       label.right = 'Increased in ADHD',
-       just = "right", just.addcols = "right", just.studlab = "left", # justify text
-       addrows.below.overall = 1,
-       file = 'outputs/meta-analysis/forest-plots/forest-plot-serotonin.pdf', width = 10) 
-
-forest(res.dopac, 
-       leftcols = c('studlab', 'n.e.', 'mean.e.', 'sd.e.', 'n.c.', 'mean.c.', 'sd.c.'), 
-       leftlabs = c('Study', 'N', 'Mean', 'SD', 'N', 'Mean', 'SD'), # change labels
-       label.e.attach = 'sd.e.', # add group heading to appropriate place
-       label.c.attach = 'sd.c.', # same as above but for other group
-       label.e = 'ADHD', # name group
-       label.c = 'Control', # ...
-       label.left = 'Increased in controls',
-       label.right = 'Increased in ADHD',
-       just = "right", just.addcols = "right", just.studlab = "left", # justify text
-       addrows.below.overall = 1,
-       file = 'outputs/meta-analysis/forest-plots/forest-plot-dopac.pdf', width = 9.8) 
-
-forest(res.hva, 
-       leftcols = c('studlab', 'n.e.', 'mean.e.', 'sd.e.', 'n.c.', 'mean.c.', 'sd.c.'), 
-       leftlabs = c('Study', 'N', 'Mean', 'SD', 'N', 'Mean', 'SD'), # change labels
-       label.e.attach = 'sd.e.', # add group heading to appropriate place
-       label.c.attach = 'sd.c.', # same as above but for other group
-       label.e = 'ADHD', # name group
-       label.c = 'Control', # ...
-       label.left = 'Increased in controls',
-       label.right = 'Increased in ADHD',
-       just = "right", just.addcols = "right", just.studlab = "left", # justify text
-       addrows.below.overall = 1,
-       file = 'outputs/meta-analysis/forest-plots/forest-plot-hva.pdf', width = 10.1) 
-
-forest(res.hiaa, 
-       leftcols = c('studlab', 'n.e.', 'mean.e.', 'sd.e.', 'n.c.', 'mean.c.', 'sd.c.'), 
-       leftlabs = c('Study', 'N', 'Mean', 'SD', 'N', 'Mean', 'SD'), # change labels
-       label.e.attach = 'sd.e.', # add group heading to appropriate place
-       label.c.attach = 'sd.c.', # same as above but for other group
-       label.e = 'ADHD', # name group
-       label.c = 'Control', # ...
-       label.left = 'Increased in controls',
-       label.right = 'Increased in ADHD',
-       just = "right", just.addcols = "right", just.studlab = "left", # justify text
-       addrows.below.overall = 1,
-       file = 'outputs/meta-analysis/forest-plots/forest-plot-5hiaa.pdf', width = 10.2) 
-
-
-## ------------------------------------------------------------------------
-# convert pdf files to svgs using website converter like https://tools.pdf24.org/en/pdf-to-svg or https://convertio.co/pdf-svg/ 
-## ------------------------------------------------------------------------
-library(rsvg)
+library(dmetar)
 library(grid)
 library(cowplot)
+library(pdftools)
+library(magick)
+library(ggnewscale)
 
-# list of SVG file paths
-svg_files <- c("outputs/meta-analysis/forest-plots/forest-plot-dopamine.svg", "outputs/meta-analysis/forest-plots/forest-plot-adrenaline.svg",
-               "outputs/meta-analysis/forest-plots/forest-plot-noradrenaline.svg", "outputs/meta-analysis/forest-plots/forest-plot-serotonin.svg",
-               "outputs/meta-analysis/forest-plots/forest-plot-dopac.svg", "outputs/meta-analysis/forest-plots/forest-plot-hva.svg", 
-               "outputs/meta-analysis/forest-plots/forest-plot-5hiaa.svg")
+# =============================================================================
+# HELPER FUNCTIONS
+# =============================================================================
 
-# function to read SVGs and convert to grobs
-svg_to_grob <- function(file, dpi = 300) {
-  svg_data <- readLines(file, warn = FALSE)
-  svg <- paste(svg_data, collapse = "\n")
-  
-  svg_image <- rsvg::rsvg(charToRaw(svg))
-  grob <- grid::rasterGrob(svg_image, width = unit(1,"npc"), height = unit(1,"npc"))
-  grob
+# Run metacont with random effects and add prediction intervals in one step
+run_metacont <- function(data) {
+       res <- metacont(
+              n.e.,
+              mean.e.,
+              sd.e.,
+              n.c.,
+              mean.c.,
+              sd.c.,
+              common = FALSE,
+              random = TRUE,
+              studlab = Study,
+              data = data,
+              sm = "SMD"
+       )
+       update(res, prediction = TRUE)
 }
 
-# create a list of grobs
-grob_list <- lapply(svg_files, svg_to_grob)
+# Save a standard forest plot to a PDF file
+make_forest <- function(res, file, width = 10) {
+       forest(
+              res,
+              leftcols = c(
+                     "studlab",
+                     "n.e.",
+                     "mean.e.",
+                     "sd.e.",
+                     "n.c.",
+                     "mean.c.",
+                     "sd.c."
+              ),
+              leftlabs = c("Study", "N", "Mean", "SD", "N", "Mean", "SD"),
+              label.e.attach = "sd.e.",
+              label.c.attach = "sd.c.",
+              label.e = "ADHD",
+              label.c = "Control",
+              label.left = "Increased in controls",
+              label.right = "Increased in ADHD",
+              just = "right",
+              just.addcols = "right",
+              just.studlab = "left",
+              addrows.below.overall = 1,
+              file = file,
+              width = width
+       )
+}
 
-# arrange the plots using plot_grid
-combined_plot <- plot_grid(plotlist = grob_list,
-                           labels = c("A - Dopamine", "B - Adrenaline", "C - Noradrenaline", "D - Serotonin", 
-                           "E - 3,4-dihydroxyphenylacetic acid", "F - Homovanillic acid", "G - 5-hydroxy-indoleacetic acid"),
-                           nrow = 7,
-                           rel_heights = c(.7, .9, 1, .74, .5, .605, .52),
-                           label_size = 7,
-                           hjust = 0)
+# Run all four influence analysis plots for one analyte and save to PDF
+run_influence <- function(res, name, dir) {
+       inf <- InfluenceAnalysis(res, random = TRUE)
+       specs <- list(
+              baujat = c(w = 5, h = 3),
+              influence = c(w = 5, h = 5),
+              es = c(w = 12, h = 5),
+              i2 = c(w = 12, h = 5)
+       )
+       for (type in names(specs)) {
+              pdf(
+                     here(dir, paste0(type, "-", name, ".pdf")),
+                     width = specs[[type]]["w"],
+                     height = specs[[type]]["h"]
+              )
+              plot(inf, type)
+              dev.off()
+       }
+       invisible(inf)
+}
 
-# save the combined plot
-save_plot("outputs/meta-analysis/forest-plots/combined_forest_plots.pdf", combined_plot, base_width = 5, base_height = 12)
+# Run one subgroup analysis and return the meta object plus a tidy summary table.
+#
+# subgroup_vals: the raw data column vector (e.g. dopamine$Sample)
+# tau_common:   logical — pool tau^2 across subgroups?
+# model:        "common" or "random" — which within-subgroup estimates to extract.
+#               Use "random" when tau.common = FALSE, or when tau.common = TRUE
+#               but the random-effects within-subgroup estimates are preferred.
+#               p_Q_between is taken from the matching common/random Q-test.
+#
+# NOTE (per-subgroup p-values): p_value in the output table tests whether each
+# subgroup's pooled estimate differs from zero — NOT whether subgroups differ
+# from each other. The latter is p_Q_between. Distinguish these clearly when
+# reporting.
+run_subgroup <- function(
+       res,
+       subgroup_vals,
+       tau_common,
+       model = "common",
+       name = NULL
+) {
+       sg <- update(
+              res,
+              subgroup = subgroup_vals,
+              tau.common = tau_common,
+              subset = !is.na(subgroup_vals)
+       )
+
+       if (model == "random") {
+              tbl <- data.frame(
+                     Subgroup = sg$subgroup.levels,
+                     k = sg$k.w,
+                     n_ADHD = sg$n.e.w,
+                     n_control = sg$n.c.w,
+                     SMD = sg$TE.random.w,
+                     lower_95CI = sg$lower.random.w,
+                     upper_95CI = sg$upper.random.w,
+                     p_value = sg$pval.random.w,
+                     I2 = sg$I2.w,
+                     lower_I2 = sg$lower.I2.w,
+                     upper_I2 = sg$upper.I2.w,
+                     p_Q_between = sg$pval.Q.b.random
+              )
+       } else {
+              tbl <- data.frame(
+                     Subgroup = sg$subgroup.levels,
+                     k = sg$k.w,
+                     n_ADHD = sg$n.e.w,
+                     n_control = sg$n.c.w,
+                     SMD = sg$TE.common.w,
+                     lower_95CI = sg$lower.common.w,
+                     upper_95CI = sg$upper.common.w,
+                     p_value = sg$pval.common.w,
+                     I2 = sg$I2.w,
+                     lower_I2 = sg$lower.I2.w,
+                     upper_I2 = sg$upper.I2.w,
+                     p_Q_between = sg$pval.Q.b.common
+              )
+       }
+
+       if (!is.null(name)) {
+              tbl <- cbind(Subgroup_Variable = name, tbl)
+       }
+       list(obj = sg, tbl = tbl)
+}
+
+# Render a list of PDF file paths to a list of rasterGrobs (for cowplot)
+render_pdfs <- function(paths, dpi = 600) {
+       lapply(paths, function(f) {
+              img <- magick::image_read(pdftools::pdf_render_page(
+                     f,
+                     page = 1,
+                     dpi = dpi
+              ))
+              grid::rasterGrob(as.raster(img))
+       })
+}
+
+# Build the standard subgroup analysis bar + I^2 line plot.
+#
+# df must have columns: Subgroup, k, SMD, I2, p_value  (as produced by
+# run_subgroup() with a name argument and then rbind'd into a stacked table).
+# desired_order controls which subgroup levels are shown and in what order;
+# levels not listed are silently dropped (useful for excluding k = 1 levels
+# that you never want shown, though the k > 1 filter already handles those).
+#
+# Significance stars on bars reflect p_value (per-level test vs. zero):
+#   * p <= 0.05   ** p <= 0.01   *** p <= 0.001
+#
+# Returns an empty ggplot (theme_void) with a warning if no levels remain
+# after the k > 1 and desired_order filters.
+make_sa_plot <- function(df, desired_order) {
+       df <- df[df$k > 1, ] # drop single-study levels
+       df$I2 <- as.numeric(df$I2)
+       df$Subgroup <- factor(df$Subgroup, levels = desired_order)
+       df <- df[!is.na(df$Subgroup), ] # keep only levels in desired_order
+       if (nrow(df) == 0) {
+              warning(
+                     "make_sa_plot: no levels remain after filtering — returning empty plot."
+              )
+              return(ggplot() + theme_void())
+       }
+       df$stars <- ifelse(
+              df$p_value <= 0.001,
+              "***",
+              ifelse(
+                     df$p_value <= 0.01,
+                     "**",
+                     ifelse(df$p_value <= 0.05, "*", "")
+              )
+       )
+       smd_max <- max(abs(df$SMD))
+
+       ggplot(df, aes(x = Subgroup)) +
+              geom_bar(
+                     aes(
+                            y = abs(SMD),
+                            fill = factor(ifelse(
+                                   SMD < 0,
+                                   "Negative effect size (SMD)",
+                                   "Positive effect size (SMD)"
+                            ))
+                     ),
+                     stat = "identity",
+                     color = "black"
+              ) +
+              geom_text(
+                     aes(y = abs(SMD) + smd_max * 0.04, label = stars),
+                     vjust = 0,
+                     size = 4
+              ) +
+              new_scale_color() +
+              geom_line(
+                     aes(y = I2 * smd_max, color = "I² (%)"),
+                     group = 1,
+                     linetype = "dashed",
+                     linewidth = 0.5
+              ) +
+              geom_point(
+                     aes(y = I2 * smd_max, color = "I² (%)"),
+                     shape = 1,
+                     size = 2
+              ) +
+              scale_y_continuous(
+                     name = "Effect Size (SMD)",
+                     sec.axis = sec_axis(~ . * 100 / smd_max, name = "I² (%)")
+              ) +
+              labs(title = " ", x = NULL) +
+              scale_fill_manual(
+                     values = c(
+                            "Negative effect size (SMD)" = "#454545",
+                            "Positive effect size (SMD)" = "#C0C0C0"
+                     ),
+                     name = NULL
+              ) +
+              scale_color_manual(values = c("I² (%)" = "black"), name = NULL) +
+              theme_bw() +
+              theme(
+                     panel.grid = element_blank(),
+                     axis.text.x = element_text(
+                            angle = 45,
+                            hjust = 1,
+                            vjust = 1,
+                            size = 10
+                     ),
+                     legend.position = "top",
+                     legend.box = "horizontal",
+                     legend.justification = "center",
+                     legend.margin = margin(0, 0, 0, 0, unit = "pt"),
+                     legend.text = element_text(size = 10),
+                     legend.title = element_text(size = 10),
+                     plot.title = element_text(hjust = 0.5)
+              ) +
+              coord_cartesian(ylim = c(0, smd_max * 1.2))
+}
+
+# =============================================================================
+# LOAD DATA
+# =============================================================================
+dopamine <- read_excel(here("data/data_meta-analysis.xlsx"), sheet = 1)
+adrenaline <- read_excel(here("data/data_meta-analysis.xlsx"), sheet = 2)
+noradrenaline <- read_excel(here("data/data_meta-analysis.xlsx"), sheet = 3)
+serotonin <- read_excel(here("data/data_meta-analysis.xlsx"), sheet = 4)
+dopac <- read_excel(here("data/data_meta-analysis.xlsx"), sheet = 5)
+hva <- read_excel(here("data/data_meta-analysis.xlsx"), sheet = 6)
+hiaa <- read_excel(here("data/data_meta-analysis.xlsx"), sheet = 7)
+
+# =============================================================================
+# META-ANALYSIS
+# =============================================================================
+res.dopamine <- run_metacont(dopamine)
+res.adrenaline <- run_metacont(adrenaline)
+res.noradrenaline <- run_metacont(noradrenaline)
+res.serotonin <- run_metacont(serotonin)
+res.dopac <- run_metacont(dopac)
+res.hva <- run_metacont(hva)
+res.hiaa <- run_metacont(hiaa)
+
+summary(res.dopamine)
+res.dopamine$I2
+res.dopamine$lower.I2
+res.dopamine$upper.I2
+summary(res.adrenaline)
+res.adrenaline$I2
+res.adrenaline$lower.I2
+res.adrenaline$upper.I2
+summary(res.noradrenaline)
+res.noradrenaline$I2
+res.noradrenaline$lower.I2
+res.noradrenaline$upper.I2
+summary(res.serotonin)
+res.serotonin$I2
+res.serotonin$lower.I2
+res.serotonin$upper.I2
+summary(res.dopac)
+res.dopac$I2
+res.dopac$lower.I2
+res.dopac$upper.I2
+summary(res.hva)
+res.hva$I2
+res.hva$lower.I2
+res.hva$upper.I2
+summary(res.hiaa)
+res.hiaa$I2
+res.hiaa$lower.I2
+res.hiaa$upper.I2
+
+# =============================================================================
+# FOREST PLOTS
+# =============================================================================
+dir.create(here("outputs/meta-analysis/forest-plots"), recursive = TRUE)
+
+forest_specs <- list(
+       list(res = res.dopamine, file = "forest-plot-dopamine.pdf", width = 10),
+       list(
+              res = res.adrenaline,
+              file = "forest-plot-adrenaline.pdf",
+              width = 10.1
+       ),
+       list(
+              res = res.noradrenaline,
+              file = "forest-plot-noradrenaline.pdf",
+              width = 10.3
+       ),
+       list(
+              res = res.serotonin,
+              file = "forest-plot-serotonin.pdf",
+              width = 10
+       ),
+       list(res = res.dopac, file = "forest-plot-dopac.pdf", width = 9.8),
+       list(res = res.hva, file = "forest-plot-hva.pdf", width = 10.1),
+       list(res = res.hiaa, file = "forest-plot-5hiaa.pdf", width = 10.2)
+)
+
+for (spec in forest_specs) {
+       make_forest(
+              spec$res,
+              here("outputs/meta-analysis/forest-plots", spec$file),
+              spec$width
+       )
+}
+
+forest_grobs <- render_pdfs(
+       lapply(forest_specs, function(s) {
+              here("outputs/meta-analysis/forest-plots", s$file)
+       })
+)
+
+combined_plot <- plot_grid(
+       plotlist = forest_grobs,
+       labels = c(
+              "A - Dopamine",
+              "B - Adrenaline",
+              "C - Noradrenaline",
+              "D - Serotonin",
+              "E - 3,4-dihydroxyphenylacetic acid",
+              "F - Homovanillic acid",
+              "G - 5-hydroxy-indoleacetic acid"
+       ),
+       nrow = 7,
+       rel_heights = c(.7, .9, 1, .74, .5, .605, .52),
+       label_size = 7,
+       hjust = 0
+)
+
+save_plot(
+       here("outputs/meta-analysis/forest-plots/combined_forest_plots.pdf"),
+       combined_plot,
+       base_width = 4.5,
+       base_height = 13
+)
 
 combined_plot
 
-## ------------------------------------------------------------------------
-#' ## Funnel Plot 
-## ------------------------------------------------------------------------
+# =============================================================================
+# SENSITIVITY ANALYSIS
+# =============================================================================
+dir.create(here("outputs/sensitivity-analysis"), recursive = TRUE)
 
-dir.create("outputs/meta-analysis/funnel-plots", recursive = TRUE) # create directory to save funnel plots
+# -----------------------------------------------------------------------------
+# INFLUENCE ANALYSIS
+# -----------------------------------------------------------------------------
+dir.create(
+       here("outputs/sensitivity-analysis/influence-analysis"),
+       recursive = TRUE
+)
 
-## ------------------------------------------------------------------------
-png("outputs/meta-analysis/funnel-plots/funnel-plot-adrenaline.png", width = 7, height = 4.5, units = "in", res = 300) # open file device to save funnel plot as PNG
+inf_dir <- "outputs/sensitivity-analysis/influence-analysis"
+run_influence(res.dopamine, "dopamine", inf_dir)
+run_influence(res.adrenaline, "adrenaline", inf_dir)
+run_influence(res.noradrenaline, "noradrenaline", inf_dir)
+run_influence(res.serotonin, "serotonin", inf_dir)
+run_influence(res.dopac, "dopac", inf_dir)
+run_influence(res.hva, "hva", inf_dir)
+run_influence(res.hiaa, "hiaa", inf_dir)
 
-funnel(res.adrenaline,
-  level = 0.95, contour = c(0.9, 0.95, 0.99),
-  col.contour = c("gray75", "gray85", "gray95"),
-  lwd = 2, cex = 1, pch = 16, studlab = TRUE, cex.studlab = 0.7)
-legend(8.2, 0,
-  c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
-  fill = c("gray75", "gray85", "gray95"))
+# -----------------------------------------------------------------------------
+# FINDING OUTLIERS
+# -----------------------------------------------------------------------------
+# Stored to make the link to sens1 exclusion indices explicit
+outliers.dopamine <- find.outliers(res.dopamine) # -> exclude c(1, 3)
+outliers.adrenaline <- find.outliers(res.adrenaline) # -> exclude c(8, 13)
+outliers.noradrenaline <- find.outliers(res.noradrenaline) # -> exclude c(7, 10)
+outliers.serotonin <- find.outliers(res.serotonin) # -> exclude c(6)
+outliers.dopac <- find.outliers(res.dopac) # no outliers
+outliers.hva <- find.outliers(res.hva) # no outliers
+outliers.hiaa <- find.outliers(res.hiaa) # no outliers
 
-dev.off() # close the PNG device
- 
-## ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# REMOVING OUTLIERS
+# -----------------------------------------------------------------------------
+dir.create(
+       here("outputs/sensitivity-analysis/removing-outliers"),
+       recursive = TRUE
+)
 
-png("outputs/meta-analysis/funnel-plots/funnel-plot-noradrenaline.png", width = 7, height = 4.5, units = "in", res = 300) # open file device to save funnel plot as PNG
+res.dopamine.sens1 <- update(res.dopamine, exclude = c(1, 3)) # outliers.dopamine
+res.adrenaline.sens1 <- update(res.adrenaline, exclude = c(8, 13)) # outliers.adrenaline
+res.noradrenaline.sens1 <- update(res.noradrenaline, exclude = c(7, 10)) # outliers.noradrenaline
+res.serotonin.sens1 <- update(res.serotonin, exclude = c(6)) # outliers.serotonin
 
-funnel(res.noradrenaline,
-  level = 0.95, contour = c(0.9, 0.95, 0.99),
-  col.contour = c("gray75", "gray85", "gray95"),
-  lwd = 2, cex = 1, pch = 16, studlab = TRUE, cex.studlab = 0.7)
-legend(3.55, 0,
-  c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
-  fill = c("gray75", "gray85", "gray95"))
+summary(res.dopamine.sens1)
+summary(res.adrenaline.sens1)
+summary(res.noradrenaline.sens1)
+summary(res.serotonin.sens1)
 
-dev.off() # close the PNG device
+sens1_specs <- list(
+       list(
+              res = res.dopamine.sens1,
+              file = "forest-plot-dopamine.pdf",
+              width = 10
+       ),
+       list(
+              res = res.adrenaline.sens1,
+              file = "forest-plot-adrenaline.pdf",
+              width = 10.1
+       ),
+       list(
+              res = res.noradrenaline.sens1,
+              file = "forest-plot-noradrenaline.pdf",
+              width = 10.3
+       ),
+       list(
+              res = res.serotonin.sens1,
+              file = "forest-plot-serotonin.pdf",
+              width = 10
+       )
+)
 
-## ------------------------------------------------------------------------
-
-## fewer than 10 studies, so not including funnel plot for dopamine, serotonin, dopac, hva, hiaa (but code is there if needed in the future)
-
-# funnel(res.dopamine,
-#   level = 0.95, contour = c(0.9, 0.95, 0.99),
-#   col.contour = c("gray75", "gray85", "gray95"),
-#   lwd = 2, cex = 1, pch = 16, studlab = TRUE, cex.studlab = 0.7)
-# legend(1, 0,
-#   c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
-#   fill = c("gray75", "gray85", "gray95"))
-
-# funnel(res.serotonin,
-#   level = 0.95, contour = c(0.9, 0.95, 0.99),
-#   col.contour = c("gray75", "gray85", "gray95"),
-#   lwd = 2, cex = 1, pch = 16, studlab = TRUE, cex.studlab = 0.7)
-# legend(7.15, 0,
-#   c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
-#   fill = c("gray75", "gray85", "gray95"))
-
-# funnel(res.dopac,
-#   level = 0.95, contour = c(0.9, 0.95, 0.99),
-#   col.contour = c("gray75", "gray85", "gray95"),
-#   lwd = 2, cex = 1, pch = 16, studlab = TRUE, cex.studlab = 0.7)
-# legend(0.58, 0,
-#   c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
-#   fill = c("gray75", "gray85", "gray95"))
-
-# funnel(res.hva,
-#   level = 0.95, contour = c(0.9, 0.95, 0.99),
-#   col.contour = c("gray75", "gray85", "gray95"),
-#   lwd = 2, cex = 1, pch = 16, studlab = TRUE, cex.studlab = 0.7)
-# legend(0.28, 0,
-#   c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
-#   fill = c("gray75", "gray85", "gray95"))
-
-# funnel(res.hiaa,
-#   level = 0.95, contour = c(0.9, 0.95, 0.99),
-#   col.contour = c("gray75", "gray85", "gray95"),
-#   lwd = 2, cex = 1, pch = 16, studlab = TRUE, cex.studlab = 0.7)
-# legend(-0.03, 0,
-#   c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
-#   fill = c("gray75", "gray85", "gray95"))
-
-## ------------------------------------------------------------------------
-
-library(magick) # for reading PNGs
-
-# list the PNG files
-png_files <- list.files("/Users/teresacorreiadesa/R/Meta-Analysis/outputs/meta-analysis/funnel-plots", pattern = "\\.png$", full.names = TRUE)
-
-# check if any PNG files were found
-if (length(png_files) == 0) {
-  stop("No PNG files found in the specified directory.")
+for (spec in sens1_specs) {
+       make_forest(
+              spec$res,
+              here("outputs/sensitivity-analysis/removing-outliers", spec$file),
+              spec$width
+       )
 }
 
-# read the PNGs as raster images using magick
-png_images <- lapply(png_files, image_read)
+sens1_grobs <- render_pdfs(
+       lapply(sens1_specs, function(s) {
+              here("outputs/sensitivity-analysis/removing-outliers", s$file)
+       })
+)
 
-# convert image objects to grobs for cowplot
-png_grobs <- lapply(png_images, function(img){
-  grid::rasterGrob(image = as.raster(img))
-})
+combined_plot_sens1 <- plot_grid(
+       plotlist = sens1_grobs,
+       labels = c(
+              "A - Dopamine",
+              "B - Adrenaline",
+              "C - Noradrenaline",
+              "D - Serotonin"
+       ),
+       nrow = 4,
+       rel_heights = c(.7, .9, 1, .74),
+       label_size = 7,
+       hjust = 0
+)
 
+save_plot(
+       here(
+              "outputs/sensitivity-analysis/removing-outliers/combined_forest_plots.pdf"
+       ),
+       combined_plot_sens1,
+       base_width = 4,
+       base_height = 8
+)
 
-# arrange the plots using plot_grid
-## 2 rows, automatically determining the number of columns
-combined_funnel_plots <- plot_grid(plotlist = png_grobs, 
-                                   nrow = 1, 
-                                   ncol = 2,
-                                   labels = c("A - Adrenaline", "B - Noradrenaline"),
-                                   label_size = 6,
-                                   hjust = 0)
+combined_plot_sens1
 
+# -----------------------------------------------------------------------------
+# REMOVING LOW QUALITY STUDIES
+# -----------------------------------------------------------------------------
+dir.create(
+       here("outputs/sensitivity-analysis/removing-low-quality-studies"),
+       recursive = TRUE
+)
 
+res.dopamine.sens2 <- update(res.dopamine, exclude = c(1, 4, 8))
+res.adrenaline.sens2 <- update(res.adrenaline, exclude = c(1, 2, 5))
+res.noradrenaline.sens2 <- update(res.noradrenaline, exclude = c(1, 2, 3, 8))
+res.serotonin.sens2 <- update(res.serotonin, exclude = c(1, 6, 8))
+res.hva.sens2 <- update(res.hva, exclude = c(2, 3, 4))
+res.hiaa.sens2 <- update(res.hiaa, exclude = c(2, 3))
+# no low quality studies for dopac
 
-# save the combined plot
-save_plot("outputs/meta-analysis/funnel-plots/combined_funnel_plots.pdf", combined_funnel_plots, base_width = 6.6, base_height = 2) # adjust width and height as needed
+summary(res.dopamine.sens2)
+summary(res.adrenaline.sens2)
+summary(res.noradrenaline.sens2)
+summary(res.serotonin.sens2)
+summary(res.hva.sens2)
+summary(res.hiaa.sens2)
 
-# display the combined plot
+sens2_specs <- list(
+       list(
+              res = res.dopamine.sens2,
+              file = "forest-plot-dopamine.pdf",
+              width = 10
+       ),
+       list(
+              res = res.adrenaline.sens2,
+              file = "forest-plot-adrenaline.pdf",
+              width = 10.1
+       ),
+       list(
+              res = res.noradrenaline.sens2,
+              file = "forest-plot-noradrenaline.pdf",
+              width = 10.3
+       ),
+       list(
+              res = res.serotonin.sens2,
+              file = "forest-plot-serotonin.pdf",
+              width = 10
+       ),
+       list(res = res.hva.sens2, file = "forest-plot-hva.pdf", width = 10),
+       list(res = res.hiaa.sens2, file = "forest-plot-5hiaa.pdf", width = 10)
+)
+
+for (spec in sens2_specs) {
+       make_forest(
+              spec$res,
+              here(
+                     "outputs/sensitivity-analysis/removing-low-quality-studies",
+                     spec$file
+              ),
+              spec$width
+       )
+}
+
+sens2_grobs <- render_pdfs(
+       lapply(sens2_specs, function(s) {
+              here(
+                     "outputs/sensitivity-analysis/removing-low-quality-studies",
+                     s$file
+              )
+       })
+)
+
+combined_plot_sens2 <- plot_grid(
+       plotlist = sens2_grobs,
+       labels = c(
+              "A - Dopamine",
+              "B - Adrenaline",
+              "C - Noradrenaline",
+              "D - Serotonin",
+              "E - Homovanillic acid",
+              "F - 5-hydroxy-indoleacetic acid"
+       ),
+       nrow = 6,
+       rel_heights = c(.7, .9, 1, .74, .58, .47),
+       label_size = 7,
+       hjust = 0
+)
+
+save_plot(
+       here(
+              "outputs/sensitivity-analysis/removing-low-quality-studies/combined_forest_plots.pdf"
+       ),
+       combined_plot_sens2,
+       base_width = 4,
+       base_height = 10
+)
+
+combined_plot_sens2
+
+# =============================================================================
+# PUBLICATION BIAS
+# =============================================================================
+dir.create(here("outputs/publication-bias"), recursive = TRUE)
+
+# -----------------------------------------------------------------------------
+# FUNNEL PLOTS
+# -----------------------------------------------------------------------------
+# Fewer than 10 studies for dopamine, serotonin, dopac, hva, hiaa — not included
+dir.create(here("outputs/publication-bias/funnel-plots"), recursive = TRUE)
+
+pdf(
+       here("outputs/publication-bias/funnel-plots/funnel-plot-adrenaline.pdf"),
+       width = 7,
+       height = 4.5
+)
+funnel(
+       res.adrenaline,
+       level = 0.95,
+       contour = c(0.9, 0.95, 0.99),
+       col.contour = c("gray75", "gray85", "gray95"),
+       lwd = 2,
+       cex = 1,
+       pch = 16,
+       studlab = TRUE,
+       cex.studlab = 0.7
+)
+legend(
+       0.8,
+       0,
+       c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
+       fill = c("gray75", "gray85", "gray95")
+)
+dev.off()
+
+pdf(
+       here(
+              "outputs/publication-bias/funnel-plots/funnel-plot-noradrenaline.pdf"
+       ),
+       width = 7,
+       height = 4.5
+)
+funnel(
+       res.noradrenaline,
+       level = 0.95,
+       contour = c(0.9, 0.95, 0.99),
+       col.contour = c("gray75", "gray85", "gray95"),
+       lwd = 2,
+       cex = 1,
+       pch = 16,
+       studlab = TRUE,
+       cex.studlab = 0.7
+)
+legend(
+       0.7,
+       0,
+       c("0.1 > p > 0.05", "0.05 > p > 0.01", "< 0.01"),
+       fill = c("gray75", "gray85", "gray95")
+)
+dev.off()
+
+funnel_grobs <- render_pdfs(list(
+       here("outputs/publication-bias/funnel-plots/funnel-plot-adrenaline.pdf"),
+       here(
+              "outputs/publication-bias/funnel-plots/funnel-plot-noradrenaline.pdf"
+       )
+))
+
+combined_funnel_plots <- plot_grid(
+       plotlist = funnel_grobs,
+       nrow = 1,
+       ncol = 2,
+       labels = c("A - Adrenaline", "B - Noradrenaline"),
+       label_size = 6,
+       hjust = 0
+)
+
+save_plot(
+       here("outputs/publication-bias/funnel-plots/combined_funnel_plots.pdf"),
+       combined_funnel_plots,
+       base_width = 6.6,
+       base_height = 2
+)
+
 combined_funnel_plots
 
-## ------------------------------------------------------------------------
-#' ## Egger’s test 
-## ------------------------------------------------------------------------
-#' - *metabias*: Test for funnel plot asymmetry, based on rank correlation or linear regression method.
-#' - Use Egger’s test to check publication bias, can take string ‘Egger’ or ‘linreg’.
-## ------------------------------------------------------------------------
-eggers.test = function(x) {
+# -----------------------------------------------------------------------------
+# EGGER'S TEST
+# -----------------------------------------------------------------------------
+# Note: the custom eggers.test() wrapper used in earlier versions of this
+# script has been removed. metabias(method = "linreg") returns the intercept,
+# SE, 95% CI, t-statistic, df, and p-value directly. Results are stored in
+# egger.ad and egger.na for reporting.
+#
+# Fewer than 10 studies for dopamine, serotonin, dopac, hva, hiaa — not conducted.
+dir.create(here("outputs/publication-bias/eggers-plots"), recursive = TRUE)
 
-    # Validate
-    x = x
-
-    if (x$k < 10) {
-
-        warning(paste("Your meta-analysis contains k =",
-                      x$k, "studies. Egger's test may lack the statistical power to detect bias when the number of studies is small (i.e., k<10)."))
-
-    }
-
-    if (class(x)[1] %in% c("meta", "metabin", "metagen", "metacont", "metacor", "metainc", "metaprop")) {
-
-        # Conduct metabias
-        eggers = meta::metabias(x, k.min = 3, method = "linreg")
-
-        # Get Intercept
-        intercept = as.numeric(eggers$estimate[1])
-
-        # Get SE
-        se = as.numeric(eggers$estimate[2])
-
-        # Calculate 95CI
-        llci = intercept - qnorm(0.975) * se
-        ulci = intercept + qnorm(0.975) * se
-
-        # Get t
-        t = as.numeric(eggers$statistic)
-
-        # Get df
-        df = as.numeric(eggers$parameters)
-
-        # Get p
-        p = as.numeric(eggers$p.value)
-
-        # Make df
-        returnlist = list(intercept = intercept,
-                          llci = llci,
-                          ulci = ulci,
-                          t = t,
-                          p = p,
-                          meta.obj = x)
-
-    } else {
-
-        stop("x must be of type 'metabin', 'metagen', 'metacont', 'metainc' or 'metaprop'")
-
-    }
-
-    class(returnlist) = "eggers.test"
-
-    return(returnlist)
-
-}
-
-dir.create("outputs/meta-analysis/eggers-plots", recursive = TRUE) # create directory to save forest plots
-
-## ------------------------------------------------------------------------
-png("outputs/meta-analysis/eggers-plots/regression-line-egger-adrenaline.png", width = 7, height = 4.5, units = "in", res = 300) # open file device to save egger's plot as PNG
-
-metabias(res.adrenaline, method.bias = 'linreg', plotit = T)
-eggers.test(res.adrenaline)
-
+pdf(
+       here(
+              "outputs/publication-bias/eggers-plots/regression-line-egger-adrenaline.pdf"
+       ),
+       width = 7,
+       height = 4.5
+)
+egger.ad <- metabias(res.adrenaline, method.bias = "linreg", plotit = TRUE)
 dev.off()
-## ------------------------------------------------------------------------
-png("outputs/meta-analysis/eggers-plots/regression-line-egger-noradrenaline.png", width = 7, height = 4.5, units = "in", res = 300) # open file device to save egger's plot as PNG
 
-metabias(res.noradrenaline, method.bias = 'linreg', plotit = T)
+pdf(
+       here(
+              "outputs/publication-bias/eggers-plots/regression-line-egger-noradrenaline.pdf"
+       ),
+       width = 7,
+       height = 4.5
+)
+egger.na <- metabias(res.noradrenaline, method.bias = "linreg", plotit = TRUE)
+dev.off()
+
+egger_grobs <- render_pdfs(list(
+       here(
+              "outputs/publication-bias/eggers-plots/regression-line-egger-adrenaline.pdf"
+       ),
+       here(
+              "outputs/publication-bias/eggers-plots/regression-line-egger-noradrenaline.pdf"
+       )
+))
+
+combined_regression_lines <- plot_grid(
+       plotlist = egger_grobs,
+       nrow = 1,
+       ncol = 2,
+       labels = c("A - Adrenaline", "B - Noradrenaline"),
+       label_size = 6,
+       hjust = 0
+)
+
+save_plot(
+       here(
+              "outputs/publication-bias/eggers-plots/combined_regression_lines.pdf"
+       ),
+       combined_regression_lines,
+       base_width = 6.6,
+       base_height = 2
+)
+
+combined_regression_lines
+
+egger.ad
+eggers.test(res.adrenaline)
+egger.na
 eggers.test(res.noradrenaline)
 
-dev.off()
-
-## ------------------------------------------------------------------------
-## fewer than 10 studies, so not including Egger's test for dopamine, serotonin, dopac, hva, hiaa (but code is there if needed in the future)
-
-# metabias(res.dopamine, method.bias = 'linreg', plotit = T) # using a minimum of 5 studies to test for funnel plot asymmetry
-# eggers.test(res.dopamine)
-
-# metabias(res.serotonin, method.bias = 'linreg', plotit = T)
-# eggers.test(res.serotonin)
-
-# metabias(res.dopac, method.bias = 'linreg', plotit = T)
-
-# metabias(res.hva, method.bias = 'linreg', plotit = T)
-# eggers.test(res.hva)
-
-# metabias(res.hiaa, method.bias = 'linreg', plotit = T)
-
-# ## ------------------------------------------------------------------------
-
-# list the PNG files
-png_files <- list.files("/Users/teresacorreiadesa/R/Meta-Analysis/outputs/meta-analysis/eggers-plots", pattern = "\\.png$", full.names = TRUE)
-
-# check if any PNG files were found
-if (length(png_files) == 0) {
-  stop("No PNG files found in the specified directory.")
-}
-
-# read the PNGs as raster images using magick
-png_images <- lapply(png_files, image_read)
-
-# convert image objects to grobs for cowplot
-png_grobs <- lapply(png_images, function(img){
-  grid::rasterGrob(image = as.raster(img))
-})
-
-# arrange the plots using plot_grid
-## 2 rows, automatically determining the number of columns
-combined_regression_lines <- plot_grid(plotlist = png_grobs, 
-                                   nrow = 1, 
-                                   ncol = 2,
-                                   labels = c("A - Adrenaline", "B - Noradrenaline"),
-                                   label_size = 6,
-                                   hjust = 0)
-
-# save the combined plot
-save_plot("outputs/meta-analysis/eggers-plots/combined_regression_lines.pdf", combined_regression_lines, base_width = 6.6, base_height = 2) # Adjust width and height as needed
-
-# Display the combined plot
-combined_regression_lines
-## ------------------------------------------------------------------------
-#' ## Subgroup analysis
-## ------------------------------------------------------------------------
-
-#' ### dopamine
-## ------------------------------------------------------------------------
-dopamine.Sample <- update(res.dopamine,
-       subgroup = Sample,
-       tau.common = TRUE, # as number of studies in subgroups is small (<5)
-       subset = !is.na(Sample)) # ignore missing data
-
-dopamine.Sample
-
-sa.tbl.da.s <- data.frame(
-           dopamine.Sample$subgroup.levels,
-           dopamine.Sample$k.w,
-           dopamine.Sample$n.e.w, 
-           dopamine.Sample$n.c.w, 
-           dopamine.Sample$TE.common.w, 
-           dopamine.Sample$lower.common.w, 
-           dopamine.Sample$upper.common.w, 
-           dopamine.Sample$pval.common.w, 
-           dopamine.Sample$I2.w, 
-           dopamine.Sample$lower.I2.w, 
-           dopamine.Sample$upper.I2.w
-           )
-
-dopamine.Sample$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-dopamine.UrineProtocol <- update(res.dopamine,
-       subgroup = UrineProtocol,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(UrineProtocol)) # ignore missing data
-
-
-dopamine.UrineProtocol
-
-sa.tbl.da.up <- data.frame(
-           dopamine.UrineProtocol$subgroup.levels,
-           dopamine.UrineProtocol$k.w,
-           dopamine.UrineProtocol$n.e.w, 
-           dopamine.UrineProtocol$n.c.w, 
-           dopamine.UrineProtocol$TE.common.w, 
-           dopamine.UrineProtocol$lower.common.w, 
-           dopamine.UrineProtocol$upper.common.w, 
-           dopamine.UrineProtocol$pval.common.w, 
-           dopamine.UrineProtocol$I2.w, 
-           dopamine.UrineProtocol$lower.I2.w, 
-           dopamine.UrineProtocol$upper.I2.w
-           )
-
-dopamine.UrineProtocol$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-dopamine.BloodComponents <- update(res.dopamine,
-       subgroup = BloodComponents,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(BloodComponents)) # ignore missing data
-
-dopamine.BloodComponents
-
-sa.tbl.da.bc <- data.frame(
-           dopamine.BloodComponents$subgroup.levels,
-           dopamine.BloodComponents$k.w,
-           dopamine.BloodComponents$n.e.w, 
-           dopamine.BloodComponents$n.c.w, 
-           dopamine.BloodComponents$TE.common.w, 
-           dopamine.BloodComponents$lower.common.w, 
-           dopamine.BloodComponents$upper.common.w, 
-           dopamine.BloodComponents$pval.common.w, 
-           dopamine.BloodComponents$I2.w, 
-           dopamine.BloodComponents$lower.I2.w, 
-           dopamine.BloodComponents$upper.I2.w
-           )
-
-dopamine.BloodComponents$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-dopamine.Country <- update(res.dopamine,
-       subgroup = Country,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Country)) # ignore missing data
-
-dopamine.Country
-
-sa.tbl.da.c <- data.frame(
-           dopamine.Country$subgroup.levels,
-           dopamine.Country$k.w,
-           dopamine.Country$n.e.w, 
-           dopamine.Country$n.c.w, 
-           dopamine.Country$TE.common.w, 
-           dopamine.Country$lower.common.w, 
-           dopamine.Country$upper.common.w, 
-           dopamine.Country$pval.common.w, 
-           dopamine.Country$I2.w, 
-           dopamine.Country$lower.I2.w, 
-           dopamine.Country$upper.I2.w
-           )
-
-dopamine.Country$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-dopamine.Sex <- update(res.dopamine,
-       subgroup = Sex,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Sex)) # ignore missing data
-
-dopamine.Sex
-
-sa.tbl.da.sex <- data.frame(
-           dopamine.Sex$subgroup.levels,
-           dopamine.Sex$k.w,
-           dopamine.Sex$n.e.w, 
-           dopamine.Sex$n.c.w, 
-           dopamine.Sex$TE.common.w, 
-           dopamine.Sex$lower.common.w, 
-           dopamine.Sex$upper.common.w, 
-           dopamine.Sex$pval.common.w, 
-           dopamine.Sex$I2.w, 
-           dopamine.Sex$lower.I2.w, 
-           dopamine.Sex$upper.I2.w
-           )
-
-dopamine.Sex$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-dopamine.Med <- update(res.dopamine,
-       subgroup = ADHDtakesMed,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDtakesMed)) # ignore missing data
-
-dopamine.Med
-
-sa.tbl.da.med <- data.frame(
-           dopamine.Med$subgroup.levels,
-           dopamine.Med$k.w,
-           dopamine.Med$n.e.w, 
-           dopamine.Med$n.c.w, 
-           dopamine.Med$TE.common.w, 
-           dopamine.Med$lower.common.w, 
-           dopamine.Med$upper.common.w, 
-           dopamine.Med$pval.common.w, 
-           dopamine.Med$I2.w, 
-           dopamine.Med$lower.I2.w, 
-           dopamine.Med$upper.I2.w
-           )
-
-dopamine.Med$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-dopamine.ADHDassess <- update(res.dopamine,
-       subgroup = ADHDassess,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDassess)) # ignore missing data
-
-dopamine.ADHDassess
-
-sa.tbl.da.aa <- data.frame(
-           dopamine.ADHDassess$subgroup.levels,
-           dopamine.ADHDassess$k.w,
-           dopamine.ADHDassess$n.e.w, 
-           dopamine.ADHDassess$n.c.w, 
-           dopamine.ADHDassess$TE.common.w, 
-           dopamine.ADHDassess$lower.common.w, 
-           dopamine.ADHDassess$upper.common.w, 
-           dopamine.ADHDassess$pval.common.w, 
-           dopamine.ADHDassess$I2.w, 
-           dopamine.ADHDassess$lower.I2.w, 
-           dopamine.ADHDassess$upper.I2.w
-           )
-
-dopamine.ADHDassess$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-dopamine.AssayMethod <- update(res.dopamine,
-       subgroup = AssayMethod,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(AssayMethod)) # ignore missing data
-
-dopamine.AssayMethod
-
-sa.tbl.da.am <- data.frame(
-           dopamine.AssayMethod$subgroup.levels,
-           dopamine.AssayMethod$k.w,
-           dopamine.AssayMethod$n.e.w, 
-           dopamine.AssayMethod$n.c.w, 
-           dopamine.AssayMethod$TE.common.w, 
-           dopamine.AssayMethod$lower.common.w, 
-           dopamine.AssayMethod$upper.common.w, 
-           dopamine.AssayMethod$pval.common.w, 
-           dopamine.AssayMethod$I2.w, 
-           dopamine.AssayMethod$lower.I2.w, 
-           dopamine.AssayMethod$upper.I2.w
-           )
-
-dopamine.AssayMethod$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-dopamine.StudyQuality <- update(res.dopamine,
-       subgroup = StudyQuality,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(StudyQuality)) # ignore missing data
-
-dopamine.StudyQuality
-
-sa.tbl.da.sq <- data.frame(
-           dopamine.StudyQuality$subgroup.levels,
-           dopamine.StudyQuality$k.w,
-           dopamine.StudyQuality$n.e.w, 
-           dopamine.StudyQuality$n.c.w, 
-           dopamine.StudyQuality$TE.common.w, 
-           dopamine.StudyQuality$lower.common.w, 
-           dopamine.StudyQuality$upper.common.w, 
-           dopamine.StudyQuality$pval.common.w, 
-           dopamine.StudyQuality$I2.w, 
-           dopamine.StudyQuality$lower.I2.w, 
-           dopamine.StudyQuality$upper.I2.w
-           )
-
-dopamine.StudyQuality$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-sa.tbls.da <- list(sa.tbl.da.s, sa.tbl.da.up, sa.tbl.da.bc, sa.tbl.da.c, sa.tbl.da.sex, sa.tbl.da.med, sa.tbl.da.aa, sa.tbl.da.am, sa.tbl.da.sq)
-
-dir.create("outputs/subgroup-analysis", recursive = TRUE) # create directory to save subgroup analysis tables
-
-library(writexl)
-write_xlsx(sa.tbls.da, "/Users/teresacorreiadesa/R/Meta-Analysis/outputs/subgroup-analysis/sa.tbls.da.xlsx")
-
-
-#' ### adrenaline
-## ------------------------------------------------------------------------
-adrenaline.Sample <- update(res.adrenaline,
-       subgroup = Sample,
-       tau.common = TRUE, # as number of studies in subgroups is small (<5)
-       subset = !is.na(Sample)) # ignore missing data
-
-adrenaline.Sample
-
-sa.tbl.ad.s <- data.frame(
-           adrenaline.Sample$subgroup.levels,
-           adrenaline.Sample$k.w,
-           adrenaline.Sample$n.e.w, 
-           adrenaline.Sample$n.c.w, 
-           adrenaline.Sample$TE.common.w, 
-           adrenaline.Sample$lower.common.w, 
-           adrenaline.Sample$upper.common.w, 
-           adrenaline.Sample$pval.common.w, 
-           adrenaline.Sample$I2.w, 
-           adrenaline.Sample$lower.I2.w, 
-           adrenaline.Sample$upper.I2.w
-           )
-
-adrenaline.Sample$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-adrenaline.UrineProtocol <- update(res.adrenaline,
-       subgroup = UrineProtocol,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(UrineProtocol)) # ignore missing data
-
-adrenaline.UrineProtocol
-
-sa.tbl.ad.up <- data.frame(
-           adrenaline.UrineProtocol$subgroup.levels,
-           adrenaline.UrineProtocol$k.w,
-           adrenaline.UrineProtocol$n.e.w, 
-           adrenaline.UrineProtocol$n.c.w, 
-           adrenaline.UrineProtocol$TE.common.w, 
-           adrenaline.UrineProtocol$lower.common.w, 
-           adrenaline.UrineProtocol$upper.common.w, 
-           adrenaline.UrineProtocol$pval.common.w, 
-           adrenaline.UrineProtocol$I2.w, 
-           adrenaline.UrineProtocol$lower.I2.w, 
-           adrenaline.UrineProtocol$upper.I2.w
-           )
-
-adrenaline.UrineProtocol$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-adrenaline.BloodComponents <- update(res.adrenaline,
-       subgroup = BloodComponents,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(BloodComponents)) # ignore missing data
-
-adrenaline.BloodComponents
-
-sa.tbl.ad.bc <- data.frame(
-           adrenaline.BloodComponents$subgroup.levels,
-           adrenaline.BloodComponents$k.w,
-           adrenaline.BloodComponents$n.e.w, 
-           adrenaline.BloodComponents$n.c.w, 
-           adrenaline.BloodComponents$TE.common.w, 
-           adrenaline.BloodComponents$lower.common.w, 
-           adrenaline.BloodComponents$upper.common.w, 
-           adrenaline.BloodComponents$pval.common.w, 
-           adrenaline.BloodComponents$I2.w, 
-           adrenaline.BloodComponents$lower.I2.w, 
-           adrenaline.BloodComponents$upper.I2.w
-           )
-
-adrenaline.BloodComponents$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-adrenaline.Sex <- update(res.adrenaline,
-       subgroup = Sex,
-       tau.common = FALSE, # as number of studies in subgroups >5
-       subset = !is.na(Sex)) # ignore missing data
-
-adrenaline.Sex
-
-sa.tbl.ad.sex <- data.frame(
-           adrenaline.Sex$subgroup.levels,
-           adrenaline.Sex$k.w,
-           adrenaline.Sex$n.e.w, 
-           adrenaline.Sex$n.c.w, 
-           adrenaline.Sex$TE.random.w, 
-           adrenaline.Sex$lower.random.w, 
-           adrenaline.Sex$upper.random.w, 
-           adrenaline.Sex$pval.random.w, 
-           adrenaline.Sex$I2.w, 
-           adrenaline.Sex$lower.I2.w, 
-           adrenaline.Sex$upper.I2.w
-           )
-
-adrenaline.Sex$pval.Q.b.random
-
-## ------------------------------------------------------------------------
-adrenaline.Med <- update(res.adrenaline,
-       subgroup = ADHDtakesMed,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDtakesMed)) # ignore missing data
-
-adrenaline.Med
-
-sa.tbl.ad.med <- data.frame(
-           adrenaline.Med$subgroup.levels,
-           adrenaline.Med$k.w,
-           adrenaline.Med$n.e.w, 
-           adrenaline.Med$n.c.w, 
-           adrenaline.Med$TE.common.w, 
-           adrenaline.Med$lower.common.w, 
-           adrenaline.Med$upper.common.w, 
-           adrenaline.Med$pval.common.w, 
-           adrenaline.Med$I2.w, 
-           adrenaline.Med$lower.I2.w, 
-           adrenaline.Med$upper.I2.w
-           )
-
-adrenaline.Med$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-adrenaline.ADHDassess <- update(res.adrenaline,
-       subgroup = ADHDassess,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDassess)) # ignore missing data
-
-adrenaline.ADHDassess
-
-sa.tbl.ad.aa <- data.frame(
-           adrenaline.ADHDassess$subgroup.levels,
-           adrenaline.ADHDassess$k.w,
-           adrenaline.ADHDassess$n.e.w, 
-           adrenaline.ADHDassess$n.c.w, 
-           adrenaline.ADHDassess$TE.common.w, 
-           adrenaline.ADHDassess$lower.common.w, 
-           adrenaline.ADHDassess$upper.common.w, 
-           adrenaline.ADHDassess$pval.common.w, 
-           adrenaline.ADHDassess$I2.w, 
-           adrenaline.ADHDassess$lower.I2.w, 
-           adrenaline.ADHDassess$upper.I2.w
-           )
-
-adrenaline.ADHDassess$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-adrenaline.AssayMethod <- update(res.adrenaline,
-       subgroup = AssayMethod,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(AssayMethod)) # ignore missing data
-
-adrenaline.AssayMethod
-
-sa.tbl.ad.am <- data.frame(
-           adrenaline.AssayMethod$subgroup.levels,
-           adrenaline.AssayMethod$k.w,
-           adrenaline.AssayMethod$n.e.w, 
-           adrenaline.AssayMethod$n.c.w, 
-           adrenaline.AssayMethod$TE.common.w, 
-           adrenaline.AssayMethod$lower.common.w, 
-           adrenaline.AssayMethod$upper.common.w, 
-           adrenaline.AssayMethod$pval.common.w, 
-           adrenaline.AssayMethod$I2.w, 
-           adrenaline.AssayMethod$lower.I2.w, 
-           adrenaline.AssayMethod$upper.I2.w
-           )
-
-adrenaline.AssayMethod$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-adrenaline.StudyQuality <- update(res.adrenaline,
-       subgroup = StudyQuality,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(StudyQuality)) # ignore missing data
-
-adrenaline.StudyQuality
-
-sa.tbl.ad.sq <- data.frame(
-           adrenaline.StudyQuality$subgroup.levels,
-           adrenaline.StudyQuality$k.w,
-           adrenaline.StudyQuality$n.e.w, 
-           adrenaline.StudyQuality$n.c.w, 
-           adrenaline.StudyQuality$TE.common.w, 
-           adrenaline.StudyQuality$lower.common.w, 
-           adrenaline.StudyQuality$upper.common.w, 
-           adrenaline.StudyQuality$pval.common.w, 
-           adrenaline.StudyQuality$I2.w, 
-           adrenaline.StudyQuality$lower.I2.w, 
-           adrenaline.StudyQuality$upper.I2.w
-           )
-
-adrenaline.StudyQuality$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-sa.tbls.ad <- list(sa.tbl.ad.s, sa.tbl.ad.up, sa.tbl.ad.bc, sa.tbl.ad.sex, sa.tbl.ad.med, sa.tbl.ad.aa, sa.tbl.ad.am, sa.tbl.ad.sq)
-
-library(writexl)
-write_xlsx(sa.tbls.ad, '/Users/teresacorreiadesa/R/Meta-Analysis/outputs/subgroup-analysis/sa.tbls.ad.xlsx')
-
-
-#' ### noradrenaline
-## ------------------------------------------------------------------------
-noradrenaline.Sample <- update(res.noradrenaline,
-       subgroup = Sample,
-       tau.common = FALSE, # as number of studies in subgroups is >5
-       subset = !is.na(Sample)) # ignore missing data
-
-noradrenaline.Sample
-
-sa.tbl.na.s <- data.frame(
-           noradrenaline.Sample$subgroup.levels,
-           noradrenaline.Sample$k.w,
-           noradrenaline.Sample$n.e.w, 
-           noradrenaline.Sample$n.c.w, 
-           noradrenaline.Sample$TE.random.w, 
-           noradrenaline.Sample$lower.random.w, 
-           noradrenaline.Sample$upper.random.w, 
-           noradrenaline.Sample$pval.random.w, 
-           noradrenaline.Sample$I2.w, 
-           noradrenaline.Sample$lower.I2.w, 
-           noradrenaline.Sample$upper.I2.w
-           )
-
-noradrenaline.Sample$pval.Q.b.random
-
-## ------------------------------------------------------------------------
-noradrenaline.UrineProtocol <- update(res.noradrenaline,
-       subgroup = UrineProtocol,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(UrineProtocol)) # ignore missing data
-
-noradrenaline.UrineProtocol
-
-sa.tbl.na.up <- data.frame(
-           noradrenaline.UrineProtocol$subgroup.levels,
-           noradrenaline.UrineProtocol$k.w,
-           noradrenaline.UrineProtocol$n.e.w, 
-           noradrenaline.UrineProtocol$n.c.w, 
-           noradrenaline.UrineProtocol$TE.common.w, 
-           noradrenaline.UrineProtocol$lower.common.w, 
-           noradrenaline.UrineProtocol$upper.common.w, 
-           noradrenaline.UrineProtocol$pval.common.w, 
-           noradrenaline.UrineProtocol$I2.w, 
-           noradrenaline.UrineProtocol$lower.I2.w, 
-           noradrenaline.UrineProtocol$upper.I2.w
-           )
-
-noradrenaline.UrineProtocol$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-noradrenaline.BloodComponents <- update(res.noradrenaline,
-       subgroup = BloodComponents,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(BloodComponents)) # ignore missing data
-
-noradrenaline.BloodComponents
-
-sa.tbl.na.bc <- data.frame(
-           noradrenaline.BloodComponents$subgroup.levels,
-           noradrenaline.BloodComponents$k.w,
-           noradrenaline.BloodComponents$n.e.w, 
-           noradrenaline.BloodComponents$n.c.w, 
-           noradrenaline.BloodComponents$TE.common.w, 
-           noradrenaline.BloodComponents$lower.common.w, 
-           noradrenaline.BloodComponents$upper.common.w, 
-           noradrenaline.BloodComponents$pval.common.w, 
-           noradrenaline.BloodComponents$I2.w, 
-           noradrenaline.BloodComponents$lower.I2.w, 
-           noradrenaline.BloodComponents$upper.I2.w
-           )
-
-noradrenaline.BloodComponents$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-noradrenaline.Country <- update(res.noradrenaline,
-       subgroup = Country,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Country)) # ignore missing data
-
-noradrenaline.Country
-
-sa.tbl.na.c <- data.frame(
-           noradrenaline.Country$subgroup.levels,
-           noradrenaline.Country$k.w,
-           noradrenaline.Country$n.e.w, 
-           noradrenaline.Country$n.c.w, 
-           noradrenaline.Country$TE.common.w, 
-           noradrenaline.Country$lower.common.w, 
-           noradrenaline.Country$upper.common.w, 
-           noradrenaline.Country$pval.common.w, 
-           noradrenaline.Country$I2.w, 
-           noradrenaline.Country$lower.I2.w, 
-           noradrenaline.Country$upper.I2.w
-           )
-
-noradrenaline.Country$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-noradrenaline.Sex <- update(res.noradrenaline,
-       subgroup = Sex,
-       tau.common = FALSE, # as number of studies in subgroups is >5
-       subset = !is.na(Sex)) # ignore missing data
-
-noradrenaline.Sex
-
-sa.tbl.na.sex <- data.frame(
-           noradrenaline.Sex$subgroup.levels,
-           noradrenaline.Sex$k.w,
-           noradrenaline.Sex$n.e.w, 
-           noradrenaline.Sex$n.c.w, 
-           noradrenaline.Sex$TE.random.w, 
-           noradrenaline.Sex$lower.random.w, 
-           noradrenaline.Sex$upper.random.w, 
-           noradrenaline.Sex$pval.random.w, 
-           noradrenaline.Sex$I2.w, 
-           noradrenaline.Sex$lower.I2.w, 
-           noradrenaline.Sex$upper.I2.w
-           )
-
-noradrenaline.Sex$pval.Q.b.random
-
-## ------------------------------------------------------------------------
-noradrenaline.Med <- update(res.noradrenaline,
-       subgroup = ADHDtakesMed,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDtakesMed)) # ignore missing data
-
-noradrenaline.Med
-
-sa.tbl.na.med <- data.frame(
-           noradrenaline.Med$subgroup.levels,
-           noradrenaline.Med$k.w,
-           noradrenaline.Med$n.e.w, 
-           noradrenaline.Med$n.c.w, 
-           noradrenaline.Med$TE.common.w, 
-           noradrenaline.Med$lower.common.w, 
-           noradrenaline.Med$upper.common.w, 
-           noradrenaline.Med$pval.common.w, 
-           noradrenaline.Med$I2.w, 
-           noradrenaline.Med$lower.I2.w, 
-           noradrenaline.Med$upper.I2.w
-           )
-
-noradrenaline.Med$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-noradrenaline.ADHDassess <- update(res.noradrenaline,
-       subgroup = ADHDassess,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDassess)) # ignore missing data
-
-noradrenaline.ADHDassess
-
-sa.tbl.na.aa <- data.frame(
-           noradrenaline.ADHDassess$subgroup.levels,
-           noradrenaline.ADHDassess$k.w,
-           noradrenaline.ADHDassess$n.e.w, 
-           noradrenaline.ADHDassess$n.c.w, 
-           noradrenaline.ADHDassess$TE.common.w, 
-           noradrenaline.ADHDassess$lower.common.w, 
-           noradrenaline.ADHDassess$upper.common.w, 
-           noradrenaline.ADHDassess$pval.common.w, 
-           noradrenaline.ADHDassess$I2.w, 
-           noradrenaline.ADHDassess$lower.I2.w, 
-           noradrenaline.ADHDassess$upper.I2.w
-           )
-
-noradrenaline.ADHDassess$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-noradrenaline.AssayMethod <- update(res.noradrenaline,
-       subgroup = AssayMethod,
-       tau.common = FALSE, # as number of studies in subgroups is >5
-       subset = !is.na(AssayMethod)) # ignore missing data
-
-noradrenaline.AssayMethod
-
-sa.tbl.na.am <- data.frame(
-           noradrenaline.AssayMethod$subgroup.levels,
-           noradrenaline.AssayMethod$k.w,
-           noradrenaline.AssayMethod$n.e.w, 
-           noradrenaline.AssayMethod$n.c.w, 
-           noradrenaline.AssayMethod$TE.random.w, 
-           noradrenaline.AssayMethod$lower.random.w, 
-           noradrenaline.AssayMethod$upper.random.w, 
-           noradrenaline.AssayMethod$pval.random.w, 
-           noradrenaline.AssayMethod$I2.w, 
-           noradrenaline.AssayMethod$lower.I2.w, 
-           noradrenaline.AssayMethod$upper.I2.w
-           )
-
-noradrenaline.AssayMethod$pval.Q.b.random
-
-## ------------------------------------------------------------------------
-noradrenaline.StudyQuality <- update(res.noradrenaline,
-       subgroup = StudyQuality,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(StudyQuality)) # ignore missing data
-
-noradrenaline.StudyQuality
-
-sa.tbl.na.sq <- data.frame(
-           noradrenaline.StudyQuality$subgroup.levels,
-           noradrenaline.StudyQuality$k.w,
-           noradrenaline.StudyQuality$n.e.w, 
-           noradrenaline.StudyQuality$n.c.w, 
-           noradrenaline.StudyQuality$TE.common.w, 
-           noradrenaline.StudyQuality$lower.common.w, 
-           noradrenaline.StudyQuality$upper.common.w, 
-           noradrenaline.StudyQuality$pval.common.w, 
-           noradrenaline.StudyQuality$I2.w, 
-           noradrenaline.StudyQuality$lower.I2.w, 
-           noradrenaline.StudyQuality$upper.I2.w
-           )
-
-noradrenaline.StudyQuality$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-sa.tbls.na <- list(sa.tbl.na.s, sa.tbl.na.up, sa.tbl.na.bc, sa.tbl.na.c, sa.tbl.na.sex, sa.tbl.na.med, sa.tbl.na.aa, sa.tbl.na.am, sa.tbl.na.sq)
-
-library(writexl)
-write_xlsx(sa.tbls.na, '/Users/teresacorreiadesa/R/Meta-Analysis/outputs/subgroup-analysis/sa.tbls.na.xlsx')
-
-
-#' ### serotonin
-## ------------------------------------------------------------------------
-serotonin.Sample <- update(res.serotonin,
-       subgroup = Sample,
-       tau.common = TRUE, # as number of studies in subgroups is small (<5)
-       subset = !is.na(Sample)) # ignore missing data
-
-serotonin.Sample
-
-sa.tbl.5ht.s <- data.frame(
-           serotonin.Sample$subgroup.levels,
-           serotonin.Sample$k.w,
-           serotonin.Sample$n.e.w, 
-           serotonin.Sample$n.c.w, 
-           serotonin.Sample$TE.common.w, 
-           serotonin.Sample$lower.common.w, 
-           serotonin.Sample$upper.common.w, 
-           serotonin.Sample$pval.common.w, 
-           serotonin.Sample$I2.w, 
-           serotonin.Sample$lower.I2.w, 
-           serotonin.Sample$upper.I2.w
-           )
-
-serotonin.Sample$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-serotonin.BloodComponents <- update(res.serotonin,
-       subgroup = BloodComponents,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(BloodComponents)) # ignore missing data
-
-serotonin.BloodComponents
-
-sa.tbl.5ht.bc <- data.frame(
-           serotonin.BloodComponents$subgroup.levels,
-           serotonin.BloodComponents$k.w,
-           serotonin.BloodComponents$n.e.w, 
-           serotonin.BloodComponents$n.c.w, 
-           serotonin.BloodComponents$TE.common.w, 
-           serotonin.BloodComponents$lower.common.w, 
-           serotonin.BloodComponents$upper.common.w, 
-           serotonin.BloodComponents$pval.common.w, 
-           serotonin.BloodComponents$I2.w, 
-           serotonin.BloodComponents$lower.I2.w, 
-           serotonin.BloodComponents$upper.I2.w
-           )
-
-serotonin.BloodComponents$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-serotonin.Country <- update(res.serotonin,
-       subgroup = Country,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Country)) # ignore missing data
-
-serotonin.Country
-
-sa.tbl.5ht.c <- data.frame(
-           serotonin.Country$subgroup.levels,
-           serotonin.Country$k.w,
-           serotonin.Country$n.e.w, 
-           serotonin.Country$n.c.w, 
-           serotonin.Country$TE.common.w, 
-           serotonin.Country$lower.common.w, 
-           serotonin.Country$upper.common.w, 
-           serotonin.Country$pval.common.w, 
-           serotonin.Country$I2.w, 
-           serotonin.Country$lower.I2.w, 
-           serotonin.Country$upper.I2.w
-           )
-
-serotonin.Country$pval.Q.b.common
- 
-## ------------------------------------------------------------------------
-serotonin.Sex <- update(res.serotonin,
-       subgroup = Sex,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Sex)) # ignore missing data
-
-serotonin.Sex
-
-sa.tbl.5ht.sex <- data.frame(
-           serotonin.Sex$subgroup.levels,
-           serotonin.Sex$k.w,
-           serotonin.Sex$n.e.w, 
-           serotonin.Sex$n.c.w, 
-           serotonin.Sex$TE.common.w, 
-           serotonin.Sex$lower.common.w, 
-           serotonin.Sex$upper.common.w, 
-           serotonin.Sex$pval.common.w, 
-           serotonin.Sex$I2.w, 
-           serotonin.Sex$lower.I2.w, 
-           serotonin.Sex$upper.I2.w
-           )
-
-serotonin.Sex$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-serotonin.Med <- update(res.serotonin,
-       subgroup = ADHDtakesMed,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDtakesMed)) # ignore missing data
-
-serotonin.Med
-
-sa.tbl.5ht.med <- data.frame(
-           serotonin.Med$subgroup.levels,
-           serotonin.Med$k.w,
-           serotonin.Med$n.e.w, 
-           serotonin.Med$n.c.w, 
-           serotonin.Med$TE.common.w, 
-           serotonin.Med$lower.common.w, 
-           serotonin.Med$upper.common.w, 
-           serotonin.Med$pval.common.w, 
-           serotonin.Med$I2.w, 
-           serotonin.Med$lower.I2.w, 
-           serotonin.Med$upper.I2.w
-           )
-
-serotonin.Med$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-serotonin.ADHDassess <- update(res.serotonin,
-       subgroup = ADHDassess,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDassess)) # ignore missing data
-
-serotonin.ADHDassess
-
-sa.tbl.5ht.aa <- data.frame(
-           serotonin.ADHDassess$subgroup.levels,
-           serotonin.ADHDassess$k.w,
-           serotonin.ADHDassess$n.e.w, 
-           serotonin.ADHDassess$n.c.w, 
-           serotonin.ADHDassess$TE.common.w, 
-           serotonin.ADHDassess$lower.common.w, 
-           serotonin.ADHDassess$upper.common.w, 
-           serotonin.ADHDassess$pval.common.w, 
-           serotonin.ADHDassess$I2.w, 
-           serotonin.ADHDassess$lower.I2.w, 
-           serotonin.ADHDassess$upper.I2.w
-           )
-
-serotonin.ADHDassess$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-serotonin.AssayMethod <- update(res.serotonin,
-       subgroup = AssayMethod,
-       tau.common = FALSE, # as number of studies in subgroups is >5
-       subset = !is.na(AssayMethod)) # ignore missing data
-
-serotonin.AssayMethod
-
-sa.tbl.5ht.am <- data.frame(
-           serotonin.AssayMethod$subgroup.levels,
-           serotonin.AssayMethod$k.w,
-           serotonin.AssayMethod$n.e.w, 
-           serotonin.AssayMethod$n.c.w, 
-           serotonin.AssayMethod$TE.random.w, 
-           serotonin.AssayMethod$lower.random.w, 
-           serotonin.AssayMethod$upper.random.w, 
-           serotonin.AssayMethod$pval.random.w, 
-           serotonin.AssayMethod$I2.w, 
-           serotonin.AssayMethod$lower.I2.w, 
-           serotonin.AssayMethod$upper.I2.w
-           )
-
-serotonin.AssayMethod$pval.Q.b.random
-
-## ------------------------------------------------------------------------
-serotonin.StudyQuality <- update(res.serotonin,
-       subgroup = StudyQuality,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(StudyQuality)) # ignore missing data
-
-serotonin.StudyQuality
-
-sa.tbl.5ht.sq <- data.frame(
-           serotonin.StudyQuality$subgroup.levels,
-           serotonin.StudyQuality$k.w,
-           serotonin.StudyQuality$n.e.w, 
-           serotonin.StudyQuality$n.c.w, 
-           serotonin.StudyQuality$TE.common.w, 
-           serotonin.StudyQuality$lower.common.w, 
-           serotonin.StudyQuality$upper.common.w, 
-           serotonin.StudyQuality$pval.common.w, 
-           serotonin.StudyQuality$I2.w, 
-           serotonin.StudyQuality$lower.I2.w, 
-           serotonin.StudyQuality$upper.I2.w
-           )
-
-serotonin.StudyQuality$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-sa.tbls.5ht <- list(sa.tbl.5ht.s, sa.tbl.5ht.bc, sa.tbl.5ht.c, sa.tbl.5ht.sex, sa.tbl.5ht.med, sa.tbl.5ht.aa, sa.tbl.5ht.am, sa.tbl.5ht.sq)
-library(writexl)
-
-write_xlsx(sa.tbls.5ht, '/Users/teresacorreiadesa/R/Meta-Analysis/outputs/subgroup-analysis/sa.tbls.5ht.xlsx')
-
-
-#' ### dopac
-## ------------------------------------------------------------------------
-dopac.Med <- update(res.dopac,
-       subgroup = ADHDtakesMed,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDtakesMed)) # ignore missing data
-
-dopac.Med
-
-sa.tbl.dopac.med <- data.frame(
-           dopac.Med$subgroup.levels,
-           dopac.Med$k.w,
-           dopac.Med$n.e.w, 
-           dopac.Med$n.c.w, 
-           dopac.Med$TE.common.w, 
-           dopac.Med$lower.common.w, 
-           dopac.Med$upper.common.w, 
-           dopac.Med$pval.common.w, 
-           dopac.Med$I2.w, 
-           dopac.Med$lower.I2.w, 
-           dopac.Med$upper.I2.w
-           )
-
-dopac.Med$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-sa.tbls.dopac <- list(sa.tbl.dopac.med)
-
-library(writexl)
-write_xlsx(sa.tbls.dopac, '/Users/teresacorreiadesa/R/Meta-Analysis/outputs/subgroup-analysis/sa.tbls.dopac.xlsx')
-
-
-#' ### hva
-## ------------------------------------------------------------------------
-hva.UrineProtocol <- update(res.hva,
-       subgroup = UrineProtocol,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(UrineProtocol)) # ignore missing data
-
-hva.UrineProtocol
-
-sa.tbl.hva.up <- data.frame(
-           hva.UrineProtocol$subgroup.levels,
-           hva.UrineProtocol$k.w,
-           hva.UrineProtocol$n.e.w, 
-           hva.UrineProtocol$n.c.w, 
-           hva.UrineProtocol$TE.common.w, 
-           hva.UrineProtocol$lower.common.w, 
-           hva.UrineProtocol$upper.common.w, 
-           hva.UrineProtocol$pval.common.w, 
-           hva.UrineProtocol$I2.w, 
-           hva.UrineProtocol$lower.I2.w, 
-           hva.UrineProtocol$upper.I2.w
-           )
-
-hva.UrineProtocol$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hva.Country <- update(res.hva,
-       subgroup = Country,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Country)) # ignore missing data
-
-hva.Country
-
-sa.tbl.hva.c <- data.frame(
-           hva.Country$subgroup.levels,
-           hva.Country$k.w,
-           hva.Country$n.e.w, 
-           hva.Country$n.c.w, 
-           hva.Country$TE.common.w, 
-           hva.Country$lower.common.w, 
-           hva.Country$upper.common.w, 
-           hva.Country$pval.common.w, 
-           hva.Country$I2.w, 
-           hva.Country$lower.I2.w, 
-           hva.Country$upper.I2.w
-           )
-
-hva.Country$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hva.Sex <- update(res.hva,
-       subgroup = Sex,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Sex)) # ignore missing data
-
-hva.Sex
-
-sa.tbl.hva.sex <- data.frame(
-           hva.Sex$subgroup.levels,
-           hva.Sex$k.w,
-           hva.Sex$n.e.w, 
-           hva.Sex$n.c.w, 
-           hva.Sex$TE.common.w, 
-           hva.Sex$lower.common.w, 
-           hva.Sex$upper.common.w, 
-           hva.Sex$pval.common.w, 
-           hva.Sex$I2.w, 
-           hva.Sex$lower.I2.w, 
-           hva.Sex$upper.I2.w
-           )
-
-hva.Sex$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hva.Med <- update(res.hva,
-       subgroup = ADHDtakesMed,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDtakesMed)) # ignore missing data
-
-hva.Med
-
-sa.tbl.hva.med <- data.frame(
-           hva.Med$subgroup.levels,
-           hva.Med$k.w,
-           hva.Med$n.e.w, 
-           hva.Med$n.c.w, 
-           hva.Med$TE.common.w, 
-           hva.Med$lower.common.w, 
-           hva.Med$upper.common.w, 
-           hva.Med$pval.common.w, 
-           hva.Med$I2.w, 
-           hva.Med$lower.I2.w, 
-           hva.Med$upper.I2.w
-           )
-
-hva.Med$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hva.ADHDassess <- update(res.hva,
-       subgroup = ADHDassess,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDassess)) # ignore missing data
-
-hva.ADHDassess
-
-sa.tbl.hva.aa <- data.frame(
-           hva.ADHDassess$subgroup.levels,
-           hva.ADHDassess$k.w,
-           hva.ADHDassess$n.e.w, 
-           hva.ADHDassess$n.c.w, 
-           hva.ADHDassess$TE.common.w, 
-           hva.ADHDassess$lower.common.w, 
-           hva.ADHDassess$upper.common.w, 
-           hva.ADHDassess$pval.common.w, 
-           hva.ADHDassess$I2.w, 
-           hva.ADHDassess$lower.I2.w, 
-           hva.ADHDassess$upper.I2.w
-           )
-
-hva.ADHDassess$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hva.AssayMethod <- update(res.hva,
-       subgroup = AssayMethod,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(AssayMethod)) # ignore missing data
-
-hva.AssayMethod
-
-sa.tbl.hva.am <- data.frame(
-           hva.AssayMethod$subgroup.levels,
-           hva.AssayMethod$k.w,
-           hva.AssayMethod$n.e.w, 
-           hva.AssayMethod$n.c.w, 
-           hva.AssayMethod$TE.common.w, 
-           hva.AssayMethod$lower.common.w, 
-           hva.AssayMethod$upper.common.w, 
-           hva.AssayMethod$pval.common.w, 
-           hva.AssayMethod$I2.w, 
-           hva.AssayMethod$lower.I2.w, 
-           hva.AssayMethod$upper.I2.w
-           )
-
-hva.AssayMethod$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hva.StudyQuality <- update(res.hva,
-       subgroup = StudyQuality,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(StudyQuality)) # ignore missing data
-
-hva.StudyQuality
-
-sa.tbl.hva.sq <- data.frame(
-           hva.StudyQuality$subgroup.levels,
-           hva.StudyQuality$k.w,
-           hva.StudyQuality$n.e.w, 
-           hva.StudyQuality$n.c.w, 
-           hva.StudyQuality$TE.common.w, 
-           hva.StudyQuality$lower.common.w, 
-           hva.StudyQuality$upper.common.w, 
-           hva.StudyQuality$pval.common.w, 
-           hva.StudyQuality$I2.w, 
-           hva.StudyQuality$lower.I2.w, 
-           hva.StudyQuality$upper.I2.w
-           )
-
-hva.StudyQuality$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-sa.tbls.hva <- list(sa.tbl.hva.up, sa.tbl.hva.c, sa.tbl.hva.sex, sa.tbl.hva.med, sa.tbl.hva.aa, sa.tbl.hva.am, sa.tbl.hva.sq)
-
-library(writexl)
-write_xlsx(sa.tbls.hva, '/Users/teresacorreiadesa/R/Meta-Analysis/outputs/subgroup-analysis/sa.tbls.hva.xlsx')
-
-
-#' ### 5-hiaa
-## ------------------------------------------------------------------------
-hiaa.Sample <- update(res.hiaa,
-       subgroup = Sample,
-       tau.common = TRUE, # as number of studies in subgroups is small (<5)
-       subset = !is.na(Sample)) # ignore missing data
-
-hiaa.Sample
-
-sa.tbl.5hiaa.s <- data.frame(
-           hiaa.Sample$subgroup.levels,
-           hiaa.Sample$k.w,
-           hiaa.Sample$n.e.w, 
-           hiaa.Sample$n.c.w, 
-           hiaa.Sample$TE.common.w, 
-           hiaa.Sample$lower.common.w, 
-           hiaa.Sample$upper.common.w, 
-           hiaa.Sample$pval.common.w, 
-           hiaa.Sample$I2.w, 
-           hiaa.Sample$lower.I2.w, 
-           hiaa.Sample$upper.I2.w
-           )
-
-hiaa.Sample$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hiaa.UrineProtocol <- update(res.hiaa,
-       subgroup = UrineProtocol,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(UrineProtocol)) # ignore missing data
-
-hiaa.UrineProtocol
-
-sa.tbl.5hiaa.up <- data.frame(
-           hiaa.UrineProtocol$subgroup.levels,
-           hiaa.UrineProtocol$k.w,
-           hiaa.UrineProtocol$n.e.w, 
-           hiaa.UrineProtocol$n.c.w, 
-           hiaa.UrineProtocol$TE.common.w, 
-           hiaa.UrineProtocol$lower.common.w, 
-           hiaa.UrineProtocol$upper.common.w, 
-           hiaa.UrineProtocol$pval.common.w, 
-           hiaa.UrineProtocol$I2.w, 
-           hiaa.UrineProtocol$lower.I2.w, 
-           hiaa.UrineProtocol$upper.I2.w
-           )
-
-hiaa.UrineProtocol$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hiaa.Country <- update(res.hiaa,
-       subgroup = Country,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Country)) # ignore missing data
-
-hiaa.Country
-
-sa.tbl.5hiaa.c <- data.frame(
-           hiaa.Country$subgroup.levels,
-           hiaa.Country$k.w,
-           hiaa.Country$n.e.w, 
-           hiaa.Country$n.c.w, 
-           hiaa.Country$TE.common.w, 
-           hiaa.Country$lower.common.w, 
-           hiaa.Country$upper.common.w, 
-           hiaa.Country$pval.common.w, 
-           hiaa.Country$I2.w, 
-           hiaa.Country$lower.I2.w, 
-           hiaa.Country$upper.I2.w
-           )
-
-hiaa.Country$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hiaa.Sex <- update(res.hiaa,
-       subgroup = Sex,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(Sex)) # ignore missing data
-
-hiaa.Sex
-
-sa.tbl.5hiaa.sex <- data.frame(
-           hiaa.Sex$subgroup.levels,
-           hiaa.Sex$k.w,
-           hiaa.Sex$n.e.w, 
-           hiaa.Sex$n.c.w, 
-           hiaa.Sex$TE.common.w, 
-           hiaa.Sex$lower.common.w, 
-           hiaa.Sex$upper.common.w, 
-           hiaa.Sex$pval.common.w, 
-           hiaa.Sex$I2.w, 
-           hiaa.Sex$lower.I2.w, 
-           hiaa.Sex$upper.I2.w
-           )
-
-hiaa.Sex$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hiaa.Med <- update(res.hiaa,
-       subgroup = ADHDtakesMed,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDtakesMed)) # ignore missing data
-
-hiaa.Med
-
-sa.tbl.5hiaa.med <- data.frame(
-           hiaa.Med$subgroup.levels,
-           hiaa.Med$k.w,
-           hiaa.Med$n.e.w, 
-           hiaa.Med$n.c.w, 
-           hiaa.Med$TE.common.w, 
-           hiaa.Med$lower.common.w, 
-           hiaa.Med$upper.common.w, 
-           hiaa.Med$pval.common.w, 
-           hiaa.Med$I2.w, 
-           hiaa.Med$lower.I2.w, 
-           hiaa.Med$upper.I2.w
-           )
-
-hiaa.Med$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hiaa.ADHDassess <- update(res.hiaa,
-       subgroup = ADHDassess,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(ADHDassess)) # ignore missing data
-
-hiaa.ADHDassess
-
-sa.tbl.5hiaa.aa <- data.frame(
-           hiaa.ADHDassess$subgroup.levels,
-           hiaa.ADHDassess$k.w,
-           hiaa.ADHDassess$n.e.w, 
-           hiaa.ADHDassess$n.c.w, 
-           hiaa.ADHDassess$TE.common.w, 
-           hiaa.ADHDassess$lower.common.w, 
-           hiaa.ADHDassess$upper.common.w, 
-           hiaa.ADHDassess$pval.common.w, 
-           hiaa.ADHDassess$I2.w, 
-           hiaa.ADHDassess$lower.I2.w, 
-           hiaa.ADHDassess$upper.I2.w
-           )
-
-hiaa.ADHDassess$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hiaa.AssayMethod <- update(res.hiaa,
-       subgroup = AssayMethod,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(AssayMethod)) # ignore missing data
-
-hiaa.AssayMethod
-
-sa.tbl.5hiaa.am <- data.frame(
-           hiaa.AssayMethod$subgroup.levels,
-           hiaa.AssayMethod$k.w,
-           hiaa.AssayMethod$n.e.w, 
-           hiaa.AssayMethod$n.c.w, 
-           hiaa.AssayMethod$TE.common.w, 
-           hiaa.AssayMethod$lower.common.w, 
-           hiaa.AssayMethod$upper.common.w, 
-           hiaa.AssayMethod$pval.common.w, 
-           hiaa.AssayMethod$I2.w, 
-           hiaa.AssayMethod$lower.I2.w, 
-           hiaa.AssayMethod$upper.I2.w
-           )
-
-hiaa.AssayMethod$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-hiaa.StudyQuality <- update(res.hiaa,
-       subgroup = StudyQuality,
-       tau.common = TRUE, # as number of studies in subgroups is small
-       subset = !is.na(StudyQuality)) # ignore missing data
-
-hiaa.StudyQuality
-
-sa.tbl.5hiaa.sq <- data.frame(
-           hiaa.StudyQuality$subgroup.levels,
-           hiaa.StudyQuality$k.w,
-           hiaa.StudyQuality$n.e.w, 
-           hiaa.StudyQuality$n.c.w, 
-           hiaa.StudyQuality$TE.common.w, 
-           hiaa.StudyQuality$lower.common.w, 
-           hiaa.StudyQuality$upper.common.w, 
-           hiaa.StudyQuality$pval.common.w, 
-           hiaa.StudyQuality$I2.w, 
-           hiaa.StudyQuality$lower.I2.w, 
-           hiaa.StudyQuality$upper.I2.w
-           )
-
-hiaa.StudyQuality$pval.Q.b.common
-
-## ------------------------------------------------------------------------
-sa.tbls.5hiaa <- list(sa.tbl.5hiaa.s, sa.tbl.5hiaa.up, sa.tbl.5hiaa.c, sa.tbl.5hiaa.sex, sa.tbl.5hiaa.med, sa.tbl.5hiaa.aa, sa.tbl.5hiaa.am, sa.tbl.5hiaa.sq)
-
-write_xlsx(sa.tbls.5hiaa, '/Users/teresacorreiadesa/R/Meta-Analysis/outputs/subgroup-analysis/sa.tbls.5hiaa.xlsx')
-
-
-## ------------------------------------------------------------------------
-#' ## Subgroup analysis - plots
-## ------------------------------------------------------------------------
-sa.plt.da <- read_excel('/Users/teresacorreiadesa/R/Meta-Analysis/data/data_subgroup-analysis_plots.xlsx', sheet = 1)
-sa.plt.ad <- read_excel('/Users/teresacorreiadesa/R/Meta-Analysis/data/data_subgroup-analysis_plots.xlsx', sheet = 2)
-sa.plt.na <- read_excel('/Users/teresacorreiadesa/R/Meta-Analysis/data/data_subgroup-analysis_plots.xlsx', sheet = 3)
-sa.plt.5ht <- read_excel('/Users/teresacorreiadesa/R/Meta-Analysis/data/data_subgroup-analysis_plots.xlsx', sheet = 4)
-sa.plt.dopac <- read_excel('/Users/teresacorreiadesa/R/Meta-Analysis/data/data_subgroup-analysis_plots.xlsx', sheet = 5)
-sa.plt.hva <- read_excel('/Users/teresacorreiadesa/R/Meta-Analysis/data/data_subgroup-analysis_plots.xlsx', sheet = 6)
-sa.plt.5hiaa <- read_excel('/Users/teresacorreiadesa/R/Meta-Analysis/data/data_subgroup-analysis_plots.xlsx', sheet = 7)
-
-
-#' ### dopamine
-## ------------------------------------------------------------------------
-library(ggplot2)
-library(dplyr)
-library(ggnewscale)
-library(gridExtra)
-
-# convert I_squared to numeric
-sa.plt.da$I_squared <- as.numeric(sa.plt.da$I_squared)
-
-# convert Group to a factor with specified levels
-desired_order <- c("All studies", "Urine", "Blood", "24-hr urine collection", "<24-hr urine collection", "Plasma", "Serum", "Western country", "Eastern country", "Both sexes", "Male", "ADHD group takes med", "ADHD group doesn't take med", "DSM-IV/DSM-IV-TR/DSM-5", "Other diagnostic method", "HPLC", "Other assay method", "Fair or Good quality", "Very poor or Poor quality")
-sa.plt.da$Group <- factor(sa.plt.da$Group, levels = desired_order)
-
-# create the plot with separate aesthetics
-da.sa.plot <- ggplot(sa.plt.da, aes(x = Group)) +
-  geom_bar(aes(y = abs(SMD), fill = factor(ifelse(SMD < 0, "Negative effect size (SMD)", "Positive effect size (SMD)"))), stat = "identity", color = "black") +
-  new_scale_color() + # use a new colour scale for the points
-  geom_line(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), group = 1, linetype = "dashed", size = 0.5) +
-  geom_point(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), shape = 1, size = 2) +
-  scale_y_continuous(
-    name = "Effect Size (SMD)",
-    sec.axis = sec_axis(~ . * 100 / max(abs(sa.plt.da$SMD)), name = "I² (%)")
-  ) +
-  labs(title = " ", x = NULL) +
-  scale_fill_manual(values = c("Negative effect size (SMD)" = "#454545", "Positive effect size (SMD)" = "#C0C0C0"), name = NULL) +
-  scale_color_manual(values = c("I² (%)" = "black"), name = NULL) + # set colour for line and points
-  theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
-        legend.position = "top",
-        legend.box = "horizontal",
-        legend.justification = "center",
-        legend.margin = margin(0, 0, 0, 0, unit = "pt"),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-           plot.title = element_text(hjust = 0.5)) + # centre the plot title
-  coord_cartesian(ylim = c(0, max(abs(sa.plt.da$SMD)) * 1.2))
-
-da.sa.plot
-
-#' ### adrenaline 
-## ------------------------------------------------------------------------
-
-# convert I_squared to numeric
-sa.plt.ad$I_squared <- as.numeric(sa.plt.ad$I_squared)
-
-# convert Group to a factor with specified levels
-desired_order <- c("All studies", "Urine", "Blood", "24-hr urine collection", "<24-hr urine collection", "Both sexes", "Male", "ADHD group takes med", "ADHD group doesn't take med", "DSM-IV/DSM-IV-TR/DSM-5", "Other diagnostic method", "HPLC", "Other assay method", "Fair or Good quality", "Very poor or Poor quality")
-sa.plt.ad$Group <- factor(sa.plt.ad$Group, levels = desired_order)
-
-# create the plot with separate aesthetics
-ad.sa.plot <- ggplot(sa.plt.ad, aes(x = Group)) +
-  geom_bar(aes(y = abs(SMD), fill = factor(ifelse(SMD < 0, "Negative effect size (SMD)", "Positive effect size (SMD)"))), stat = "identity", color = "black") +
-  new_scale_color() + # use a new colour scale for the points
-  geom_line(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), group = 1, linetype = "dashed", size = 0.5) +
-  geom_point(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), shape = 1, size = 2) +
-  scale_y_continuous(
-    name = "Effect Size (SMD)",
-    sec.axis = sec_axis(~ . * 100 / max(abs(sa.plt.ad$SMD)), name = "I² (%)")
-  ) +
-  labs(title = " ", x = NULL) +
-  scale_fill_manual(values = c("Negative effect size (SMD)" = "#454545", "Positive effect size (SMD)" = "#C0C0C0"), name = NULL) +
-  scale_color_manual(values = c("I² (%)" = "black"), name = NULL) + # set colour for line and points
-  theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
-        legend.position = "top",
-        legend.box = "horizontal",
-        legend.justification = "center",
-        legend.margin = margin(0, 0, 0, 0, unit = "pt"),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-           plot.title = element_text(hjust = 0.5)) + # centre the plot title
-  coord_cartesian(ylim = c(0, max(abs(sa.plt.ad$SMD)) * 1.2))
-
-ad.sa.plot
-
-#' ### noradrenaline
-## ------------------------------------------------------------------------
-
-# convert I_squared to numeric
-sa.plt.na$I_squared <- as.numeric(sa.plt.na$I_squared)
-
-# convert Group to a factor with specified levels
-desired_order <- c("All studies", "Urine", "Blood", "24-hr urine collection", "<24-hr urine collection", "Plasma", "Serum", "Western country", "Eastern country", "Both sexes", "Male", "ADHD group takes med", "ADHD group doesn't take med", "DSM-IV/DSM-IV-TR/DSM-5", "Other diagnostic method", "HPLC", "Other assay method", "Fair or Good quality", "Very poor or Poor quality")
-sa.plt.na$Group <- factor(sa.plt.na$Group, levels = desired_order)
-
-# create the plot with separate aesthetics
-na.sa.plot <- ggplot(sa.plt.na, aes(x = Group)) +
-  geom_bar(aes(y = abs(SMD), fill = factor(ifelse(SMD < 0, "Negative effect size (SMD)", "Positive effect size (SMD)"))), stat = "identity", color = "black") +
-  new_scale_color() + # use a new colour scale for the points
-  geom_line(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), group = 1, linetype = "dashed", size = 0.5) +
-  geom_point(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), shape = 1, size = 2) +
-  scale_y_continuous(
-    name = "Effect Size (SMD)",
-    sec.axis = sec_axis(~ . * 100 / max(abs(sa.plt.na$SMD)), name = "I² (%)")
-  ) +
-  labs(title = " ", x = NULL) +
-  scale_fill_manual(values = c("Negative effect size (SMD)" = "#454545", "Positive effect size (SMD)" = "#C0C0C0"), name = NULL) +
-  scale_color_manual(values = c("I² (%)" = "black"), name = NULL) + # set colour for line and points
-  theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
-        legend.position = "top",
-        legend.box = "horizontal",
-        legend.justification = "center",
-        legend.margin = margin(0, 0, 0, 0, unit = "pt"),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-           plot.title = element_text(hjust = 0.5)) + # centre the plot title
-  coord_cartesian(ylim = c(0, max(abs(sa.plt.na$SMD)) * 1.2))
-
-na.sa.plot
-
-#' ### serotonin
-## ------------------------------------------------------------------------
-
-# convert I_squared to numeric
-sa.plt.5ht$I_squared <- as.numeric(sa.plt.5ht$I_squared)
-
-# convert Group to a factor with specified levels
-desired_order <- c("All studies", "Urine", "Blood", "Whole blood", "Platelets", "Serum", "Umbilical cord blood", "Western country", "Eastern country", "Both sexes", "Male", "ADHD group takes med", "ADHD group doesn't take med", "DSM-IV/DSM-IV-TR/DSM-5", "Other diagnostic method",  "Spectrofluorimetry", "LC-MS", "RIA/ELISA kit", "Fair or Good quality", "Very poor or Poor quality")
-sa.plt.5ht$Group <- factor(sa.plt.5ht$Group, levels = desired_order)
-
-# create the plot with separate aesthetics
-ser.sa.plot <- ggplot(sa.plt.5ht, aes(x = Group)) +
-  geom_bar(aes(y = abs(SMD), fill = factor(ifelse(SMD < 0, "Negative effect size (SMD)", "Positive effect size (SMD)"))), stat = "identity", color = "black") +
-  new_scale_color() + # use a new colour scale for the points
-  geom_line(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), group = 1, linetype = "dashed", size = 0.5) +
-  geom_point(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), shape = 1, size = 2) +
-  scale_y_continuous(
-    name = "Effect Size (SMD)",
-    sec.axis = sec_axis(~ . * 100 / max(abs(sa.plt.5ht$SMD)), name = "I² (%)")
-  ) +
-  labs(title = " ", x = NULL) +
-  scale_fill_manual(values = c("Negative effect size (SMD)" = "#454545", "Positive effect size (SMD)" = "#C0C0C0"), name = NULL) +
-  scale_color_manual(values = c("I² (%)" = "black"), name = NULL) + # set colour for line and points
-  theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
-        legend.position = "top",
-        legend.box = "horizontal",
-        legend.justification = "center",
-        legend.margin = margin(0, 0, 0, 0, unit = "pt"),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-           plot.title = element_text(hjust = 0.5)) + # centre the plot title
-  coord_cartesian(ylim = c(0, max(abs(sa.plt.5ht$SMD)) * 1.2))
-
-ser.sa.plot
-
-#' ### dopac
-## ------------------------------------------------------------------------
-
-# convert I_squared to numeric
-sa.plt.dopac$I_squared <- as.numeric(sa.plt.dopac$I_squared)
-
-# convert Group to a factor with specified levels
-desired_order <- c("All studies", "ADHD group takes med", "ADHD group doesn't take med")
-sa.plt.dopac$Group <- factor(sa.plt.dopac$Group, levels = desired_order)
-
-# create the plot with separate aesthetics
-dopac.sa.plot <- ggplot(sa.plt.dopac, aes(x = Group)) +
-  geom_bar(aes(y = abs(SMD), fill = factor(ifelse(SMD < 0, "Negative effect size (SMD)", "Positive effect size (SMD)"))), stat = "identity", color = "black") +
-  new_scale_color() + # use a new colour scale for the points
-  geom_line(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), group = 1, linetype = "dashed", size = 0.5) +
-  geom_point(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), shape = 1, size = 2) +
-  scale_y_continuous(
-    name = "Effect Size (SMD)",
-    sec.axis = sec_axis(~ . * 100 / max(abs(sa.plt.dopac$SMD)), name = "I² (%)")
-  ) +
-  labs(title = " ", x = NULL) +
-  scale_fill_manual(values = c("Negative effect size (SMD)" = "#454545", "Positive effect size (SMD)" = "#C0C0C0"), name = NULL) +
-  scale_color_manual(values = c("I² (%)" = "black"), name = NULL) + # set colour for line and points
-  theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
-        legend.position = "top",
-        legend.box = "horizontal",
-        legend.justification = "center",
-        legend.margin = margin(0, 0, 0, 0, unit = "pt"),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-           plot.title = element_text(hjust = 0.5)) + # centre the plot title
-  coord_cartesian(ylim = c(0, max(abs(sa.plt.dopac$SMD)) * 1.2))
-
-dopac.sa.plot
-
-#' ### hva
-## ------------------------------------------------------------------------
-
-# convert I_squared to numeric
-sa.plt.hva$I_squared <- as.numeric(sa.plt.hva$I_squared)
-
-# convert Group to a factor with specified levels
-desired_order <- c("All studies", "24-hr urine collection", "<24-hr urine collection", "Western country", "Eastern country", "ADHD group takes med", "ADHD group doesn't take med", "DSM-IV/DSM-IV-TR/DSM-5", "Other diagnostic method", "HPLC", "Other assay method", "Fair or Good quality", "Very poor or Poor quality")
-sa.plt.hva$Group <- factor(sa.plt.hva$Group, levels = desired_order)
-
-# create the plot with separate aesthetics
-hva.sa.plot <- ggplot(sa.plt.hva, aes(x = Group)) +
-  geom_bar(aes(y = abs(SMD), fill = factor(ifelse(SMD < 0, "Negative effect size (SMD)", "Positive effect size (SMD)"))), stat = "identity", color = "black") +
-  new_scale_color() + # use a new colour scale for the points
-  geom_line(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), group = 1, linetype = "dashed", size = 0.5) +
-  geom_point(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), shape = 1, size = 2) +
-  scale_y_continuous(
-    name = "Effect Size (SMD)",
-    sec.axis = sec_axis(~ . * 100 / max(abs(sa.plt.hva$SMD)), name = "I² (%)")
-  ) +
-  labs(title = " ", x = NULL) +
-  scale_fill_manual(values = c("Negative effect size (SMD)" = "#454545", "Positive effect size (SMD)" = "#C0C0C0"), name = NULL) +
-  scale_color_manual(values = c("I² (%)" = "black"), name = NULL) + # set colour for line and points
-  theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
-        legend.position = "top",
-        legend.box = "horizontal",
-        legend.justification = "center",
-        legend.margin = margin(0, 0, 0, 0, unit = "pt"),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-           plot.title = element_text(hjust = 0.5)) + # centre the plot title
-  coord_cartesian(ylim = c(0, max(abs(sa.plt.hva$SMD)) * 1.2))
-
-hva.sa.plot
-
-#' ### 5-hiaa
-## ------------------------------------------------------------------------
-
-# convert I_squared to numeric
-sa.plt.5hiaa$I_squared <- as.numeric(sa.plt.5hiaa$I_squared)
-
-# convert Group to a factor with specified levels
-desired_order <- c("All studies", "Urine", "Blood", "24-hr urine collection", "<24-hr urine collection", "Western country", "Eastern country", "DSM-IV/DSM-IV-TR/DSM-5", "Other diagnostic method", "HPLC", "Other assay method", "Fair or Good quality", "Very poor or Poor quality")
-sa.plt.5hiaa$Group <- factor(sa.plt.5hiaa$Group, levels = desired_order)
-
-# create the plot with separate aesthetics
-hiaa.sa.plot <- ggplot(sa.plt.5hiaa, aes(x = Group)) +
-  geom_bar(aes(y = abs(SMD), fill = factor(ifelse(SMD < 0, "Negative effect size (SMD)", "Positive effect size (SMD)"))), stat = "identity", color = "black") +
-  new_scale_color() + # use a new colour scale for the points
-  geom_line(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), group = 1, linetype = "dashed", size = 0.5) +
-  geom_point(aes(y = I_squared * max(abs(SMD)), color = "I² (%)"), shape = 1, size = 2) +
-  scale_y_continuous(
-    name = "Effect Size (SMD)",
-    sec.axis = sec_axis(~ . * 100 / max(abs(sa.plt.5hiaa$SMD)), name = "I² (%)")
-  ) +
-  labs(title = " ", x = NULL) +
-  scale_fill_manual(values = c("Negative effect size (SMD)" = "#454545", "Positive effect size (SMD)" = "#C0C0C0"), name = NULL) +
-  scale_color_manual(values = c("I² (%)" = "black"), name = NULL) + # set colour for line and points
-  theme_bw() +
-  theme(panel.grid = element_blank(),
-        axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1, size = 10),
-        legend.position = "top",
-        legend.box = "horizontal",
-        legend.justification = "center",
-        legend.margin = margin(0, 0, 0, 0, unit = "pt"),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-           plot.title = element_text(hjust = 0.5)) + # centre the plot title
-  coord_cartesian(ylim = c(0, max(abs(sa.plt.5hiaa$SMD)) * 1.2))
-
-hiaa.sa.plot
-
-## ------------------------------------------------------------------------
-
-# arrange the plots using plot_grid
-
-sa.plts <- list(da.sa.plot, ad.sa.plot, na.sa.plot, ser.sa.plot, hva.sa.plot, hiaa.sa.plot)
-
-combined_plot_2 <- plot_grid(plotlist = sa.plts,
-                           labels = c("A - Dopamine", "B - Adrenaline", "C - Noradrenaline", "D - Serotonin", "E - Homovanillic acid", "F - 5-hydroxy-indoleacetic acid"),
-                           ncol =2,
-                           nrow = 3,
-                           label_size = 11,
-                           hjust = 0)
-
-# save the combined plot
-save_plot("outputs/subgroup-analysis/combined_subgroup_analyses.pdf", combined_plot_2, base_width = 13, base_height = 13)
+# =============================================================================
+# SUBGROUP ANALYSIS
+# =============================================================================
+dir.create(here("outputs/subgroup-analysis"), recursive = TRUE)
+
+# dopamine..................................................................\
+da.s <- run_subgroup(
+       res.dopamine,
+       dopamine$Sample,
+       tau_common = TRUE,
+       name = "Sample"
+)
+da.up <- run_subgroup(
+       res.dopamine,
+       dopamine$UrineProtocol,
+       tau_common = TRUE,
+       name = "UrineProtocol"
+)
+da.bc <- run_subgroup(
+       res.dopamine,
+       dopamine$BloodComponents,
+       tau_common = TRUE,
+       name = "BloodComponents"
+)
+da.c <- run_subgroup(
+       res.dopamine,
+       dopamine$Country,
+       tau_common = TRUE,
+       name = "Country"
+)
+da.sex <- run_subgroup(
+       res.dopamine,
+       dopamine$Sex,
+       tau_common = TRUE,
+       name = "Sex"
+)
+da.med <- run_subgroup(
+       res.dopamine,
+       dopamine$ADHDtakesMed,
+       tau_common = TRUE,
+       name = "ADHDtakesMed"
+)
+da.aa <- run_subgroup(
+       res.dopamine,
+       dopamine$ADHDassess,
+       tau_common = TRUE,
+       name = "ADHDassess"
+)
+da.am <- run_subgroup(
+       res.dopamine,
+       dopamine$AssayMethod,
+       tau_common = TRUE,
+       name = "AssayMethod"
+)
+da.sq <- run_subgroup(
+       res.dopamine,
+       dopamine$StudyQuality,
+       tau_common = TRUE,
+       name = "StudyQuality"
+)
+
+# keep named objects for interactive inspection if needed
+dopamine.Sample <- da.s$obj
+dopamine.UrineProtocol <- da.up$obj
+dopamine.BloodComponents <- da.bc$obj
+dopamine.Country <- da.c$obj
+dopamine.Sex <- da.sex$obj
+dopamine.Med <- da.med$obj
+dopamine.ADHDassess <- da.aa$obj
+dopamine.AssayMethod <- da.am$obj
+dopamine.StudyQuality <- da.sq$obj
+
+# adrenaline................................................................
+ad.s <- run_subgroup(
+       res.adrenaline,
+       adrenaline$Sample,
+       tau_common = TRUE,
+       name = "Sample"
+)
+ad.up <- run_subgroup(
+       res.adrenaline,
+       adrenaline$UrineProtocol,
+       tau_common = TRUE,
+       name = "UrineProtocol"
+)
+ad.bc <- run_subgroup(
+       res.adrenaline,
+       adrenaline$BloodComponents,
+       tau_common = TRUE,
+       name = "BloodComponents"
+)
+ad.sex <- run_subgroup(
+       res.adrenaline,
+       adrenaline$Sex,
+       tau_common = FALSE,
+       model = "random",
+       name = "Sex"
+)
+ad.med <- run_subgroup(
+       res.adrenaline,
+       adrenaline$ADHDtakesMed,
+       tau_common = TRUE,
+       name = "ADHDtakesMed"
+)
+ad.aa <- run_subgroup(
+       res.adrenaline,
+       adrenaline$ADHDassess,
+       tau_common = TRUE,
+       name = "ADHDassess"
+)
+ad.am <- run_subgroup(
+       res.adrenaline,
+       adrenaline$AssayMethod,
+       tau_common = TRUE,
+       name = "AssayMethod"
+)
+ad.sq <- run_subgroup(
+       res.adrenaline,
+       adrenaline$StudyQuality,
+       tau_common = TRUE,
+       name = "StudyQuality"
+)
+
+adrenaline.Sample <- ad.s$obj
+adrenaline.UrineProtocol <- ad.up$obj
+adrenaline.BloodComponents <- ad.bc$obj
+adrenaline.Sex <- ad.sex$obj
+adrenaline.Med <- ad.med$obj
+adrenaline.ADHDassess <- ad.aa$obj
+adrenaline.AssayMethod <- ad.am$obj
+adrenaline.StudyQuality <- ad.sq$obj
+
+# noradrenaline.............................................................\
+na.s <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$Sample,
+       tau_common = FALSE,
+       model = "random",
+       name = "Sample"
+)
+na.up <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$UrineProtocol,
+       tau_common = TRUE,
+       name = "UrineProtocol"
+)
+na.bc <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$BloodComponents,
+       tau_common = TRUE,
+       name = "BloodComponents"
+)
+na.c <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$Country,
+       tau_common = TRUE,
+       name = "Country"
+)
+na.sex <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$Sex,
+       tau_common = FALSE,
+       model = "random",
+       name = "Sex"
+)
+na.med <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$ADHDtakesMed,
+       tau_common = TRUE,
+       name = "ADHDtakesMed"
+)
+na.aa <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$ADHDassess,
+       tau_common = TRUE,
+       name = "ADHDassess"
+)
+na.am <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$AssayMethod,
+       tau_common = FALSE,
+       model = "random",
+       name = "AssayMethod"
+)
+na.sq <- run_subgroup(
+       res.noradrenaline,
+       noradrenaline$StudyQuality,
+       tau_common = TRUE,
+       name = "StudyQuality"
+)
+
+noradrenaline.Sample <- na.s$obj
+noradrenaline.UrineProtocol <- na.up$obj
+noradrenaline.BloodComponents <- na.bc$obj
+noradrenaline.Country <- na.c$obj
+noradrenaline.Sex <- na.sex$obj
+noradrenaline.Med <- na.med$obj
+noradrenaline.ADHDassess <- na.aa$obj
+noradrenaline.AssayMethod <- na.am$obj
+noradrenaline.StudyQuality <- na.sq$obj
+
+# serotonin.................................................................\
+ht.s <- run_subgroup(
+       res.serotonin,
+       serotonin$Sample,
+       tau_common = TRUE,
+       name = "Sample"
+)
+ht.bc <- run_subgroup(
+       res.serotonin,
+       serotonin$BloodComponents,
+       tau_common = TRUE,
+       name = "BloodComponents"
+)
+ht.c <- run_subgroup(
+       res.serotonin,
+       serotonin$Country,
+       tau_common = TRUE,
+       name = "Country"
+)
+ht.sex <- run_subgroup(
+       res.serotonin,
+       serotonin$Sex,
+       tau_common = TRUE,
+       name = "Sex"
+)
+ht.med <- run_subgroup(
+       res.serotonin,
+       serotonin$ADHDtakesMed,
+       tau_common = TRUE,
+       name = "ADHDtakesMed"
+)
+ht.aa <- run_subgroup(
+       res.serotonin,
+       serotonin$ADHDassess,
+       tau_common = TRUE,
+       name = "ADHDassess"
+)
+ht.am <- run_subgroup(
+       res.serotonin,
+       serotonin$AssayMethod,
+       tau_common = TRUE,
+       model = "random",
+       name = "AssayMethod"
+)
+ht.sq <- run_subgroup(
+       res.serotonin,
+       serotonin$StudyQuality,
+       tau_common = TRUE,
+       name = "StudyQuality"
+)
+
+serotonin.Sample <- ht.s$obj
+serotonin.BloodComponents <- ht.bc$obj
+serotonin.Country <- ht.c$obj
+serotonin.Sex <- ht.sex$obj
+serotonin.Med <- ht.med$obj
+serotonin.ADHDassess <- ht.aa$obj
+serotonin.AssayMethod <- ht.am$obj
+serotonin.StudyQuality <- ht.sq$obj
+
+# dopac.....................................................................\
+# Only the Med subgroup was analysed; subgroup levels lacked sufficient data
+# for display in the plot (see note in SUBGROUP ANALYSIS — PLOTS below).
+dopac.med <- run_subgroup(
+       res.dopac,
+       dopac$ADHDtakesMed,
+       tau_common = TRUE,
+       name = "ADHDtakesMed"
+)
+dopac.Med <- dopac.med$obj
+
+# hva.......................................................................\
+hva.up <- run_subgroup(
+       res.hva,
+       hva$UrineProtocol,
+       tau_common = TRUE,
+       name = "UrineProtocol"
+)
+hva.c <- run_subgroup(res.hva, hva$Country, tau_common = TRUE, name = "Country")
+hva.sex <- run_subgroup(res.hva, hva$Sex, tau_common = TRUE, name = "Sex")
+hva.med <- run_subgroup(
+       res.hva,
+       hva$ADHDtakesMed,
+       tau_common = TRUE,
+       name = "ADHDtakesMed"
+)
+hva.aa <- run_subgroup(
+       res.hva,
+       hva$ADHDassess,
+       tau_common = TRUE,
+       name = "ADHDassess"
+)
+hva.am <- run_subgroup(
+       res.hva,
+       hva$AssayMethod,
+       tau_common = TRUE,
+       name = "AssayMethod"
+)
+hva.sq <- run_subgroup(
+       res.hva,
+       hva$StudyQuality,
+       tau_common = TRUE,
+       name = "StudyQuality"
+)
+
+hva.UrineProtocol <- hva.up$obj
+hva.Country <- hva.c$obj
+hva.Sex <- hva.sex$obj
+hva.Med <- hva.med$obj
+hva.ADHDassess <- hva.aa$obj
+hva.AssayMethod <- hva.am$obj
+hva.StudyQuality <- hva.sq$obj
+
+# 5-hiaa....................................................................\
+hiaa.s <- run_subgroup(
+       res.hiaa,
+       hiaa$Sample,
+       tau_common = TRUE,
+       name = "Sample"
+)
+hiaa.up <- run_subgroup(
+       res.hiaa,
+       hiaa$UrineProtocol,
+       tau_common = TRUE,
+       name = "UrineProtocol"
+)
+hiaa.c <- run_subgroup(
+       res.hiaa,
+       hiaa$Country,
+       tau_common = TRUE,
+       name = "Country"
+)
+hiaa.sex <- run_subgroup(res.hiaa, hiaa$Sex, tau_common = TRUE, name = "Sex")
+hiaa.med <- run_subgroup(
+       res.hiaa,
+       hiaa$ADHDtakesMed,
+       tau_common = TRUE,
+       name = "ADHDtakesMed"
+)
+hiaa.aa <- run_subgroup(
+       res.hiaa,
+       hiaa$ADHDassess,
+       tau_common = TRUE,
+       name = "ADHDassess"
+)
+hiaa.am <- run_subgroup(
+       res.hiaa,
+       hiaa$AssayMethod,
+       tau_common = TRUE,
+       name = "AssayMethod"
+)
+hiaa.sq <- run_subgroup(
+       res.hiaa,
+       hiaa$StudyQuality,
+       tau_common = TRUE,
+       name = "StudyQuality"
+)
+
+hiaa.Sample <- hiaa.s$obj
+hiaa.UrineProtocol <- hiaa.up$obj
+hiaa.Country <- hiaa.c$obj
+hiaa.Sex <- hiaa.sex$obj
+hiaa.Med <- hiaa.med$obj
+hiaa.ADHDassess <- hiaa.aa$obj
+hiaa.AssayMethod <- hiaa.am$obj
+hiaa.StudyQuality <- hiaa.sq$obj
+
+# Stack all subgroup tables per analyte and export a single workbook.
+# Each sheet = one analyte; each row = one subgroup level; Subgroup_Variable
+# identifies which subgroup analysis a row came from.
+# Levels with k = 1 are retained here (they are filtered in make_sa_plot()) so
+# the full data is preserved for inspection.
+sa.tbl.da <- rbind(
+       da.s$tbl,
+       da.up$tbl,
+       da.bc$tbl,
+       da.c$tbl,
+       da.sex$tbl,
+       da.med$tbl,
+       da.aa$tbl,
+       da.am$tbl,
+       da.sq$tbl
+)
+sa.tbl.ad <- rbind(
+       ad.s$tbl,
+       ad.up$tbl,
+       ad.bc$tbl,
+       ad.sex$tbl,
+       ad.med$tbl,
+       ad.aa$tbl,
+       ad.am$tbl,
+       ad.sq$tbl
+)
+sa.tbl.na <- rbind(
+       na.s$tbl,
+       na.up$tbl,
+       na.bc$tbl,
+       na.c$tbl,
+       na.sex$tbl,
+       na.med$tbl,
+       na.aa$tbl,
+       na.am$tbl,
+       na.sq$tbl
+)
+sa.tbl.5ht <- rbind(
+       ht.s$tbl,
+       ht.bc$tbl,
+       ht.c$tbl,
+       ht.sex$tbl,
+       ht.med$tbl,
+       ht.aa$tbl,
+       ht.am$tbl,
+       ht.sq$tbl
+)
+sa.tbl.dopac <- dopac.med$tbl
+sa.tbl.hva <- rbind(
+       hva.up$tbl,
+       hva.c$tbl,
+       hva.sex$tbl,
+       hva.med$tbl,
+       hva.aa$tbl,
+       hva.am$tbl,
+       hva.sq$tbl
+)
+sa.tbl.5hiaa <- rbind(
+       hiaa.s$tbl,
+       hiaa.up$tbl,
+       hiaa.c$tbl,
+       hiaa.sex$tbl,
+       hiaa.med$tbl,
+       hiaa.aa$tbl,
+       hiaa.am$tbl,
+       hiaa.sq$tbl
+)
+
+write_xlsx(
+       list(
+              Dopamine = sa.tbl.da,
+              Adrenaline = sa.tbl.ad,
+              Noradrenaline = sa.tbl.na,
+              Serotonin = sa.tbl.5ht,
+              DOPAC = sa.tbl.dopac,
+              HVA = sa.tbl.hva,
+              "5-HIAA" = sa.tbl.5hiaa
+       ),
+       here("outputs/subgroup-analysis/sa.tbls.xlsx")
+)
+
+# -----------------------------------------------------------------------------
+# SUBGROUP ANALYSIS — PLOTS
+# -----------------------------------------------------------------------------
+# Plot data now comes directly from the in-memory stacked tables (sa.tbl.*)
+# built above — no need to read a separate Excel.
+# Levels with k = 1 are dropped automatically inside make_sa_plot().
+# NOTE: "All studies" (the overall pooled estimate, not a subgroup level) was
+# previously added manually to data_subgroup-analysis_plots.xlsx.  It is
+# intentionally omitted here; refer to res.* objects for the overall result.
+
+da.sa.plot <- make_sa_plot(
+       sa.tbl.da,
+       c(
+              "Urine",
+              "Blood",
+              "<24-hr urine collection",
+              "Plasma",
+              "Serum",
+              "Western country",
+              "Eastern country",
+              "Both sexes",
+              "Male",
+              "ADHD group takes med",
+              "ADHD group doesn't take med",
+              "DSM-IV/DSM-IV-TR/DSM-5",
+              "Other diagnostic method",
+              "HPLC",
+              "Other assay method",
+              "Fair or Good quality",
+              "Very poor or Poor quality"
+       )
+)
+
+ad.sa.plot <- make_sa_plot(
+       sa.tbl.ad,
+       c(
+              "Urine",
+              "Blood",
+              "24-hr urine collection",
+              "<24-hr urine collection",
+              "Plasma",
+              "Both sexes",
+              "Male",
+              "ADHD group takes med",
+              "ADHD group doesn't take med",
+              "DSM-IV/DSM-IV-TR/DSM-5",
+              "Other diagnostic method",
+              "HPLC",
+              "Other assay method",
+              "Fair or Good quality",
+              "Very poor or Poor quality"
+       )
+)
+
+na.sa.plot <- make_sa_plot(
+       sa.tbl.na,
+       c(
+              "Urine",
+              "Blood",
+              "24-hr urine collection",
+              "<24-hr urine collection",
+              "Plasma",
+              "Serum",
+              "Western country",
+              "Eastern country",
+              "Both sexes",
+              "Male",
+              "ADHD group takes med",
+              "ADHD group doesn't take med",
+              "DSM-IV/DSM-IV-TR/DSM-5",
+              "Other diagnostic method",
+              "HPLC",
+              "Other assay method",
+              "Fair or Good quality",
+              "Very poor or Poor quality"
+       )
+)
+
+ser.sa.plot <- make_sa_plot(
+       sa.tbl.5ht,
+       c(
+              "Blood",
+              "Whole blood",
+              "Platelets",
+              "Serum",
+              "Western country",
+              "Eastern country",
+              "Both sexes",
+              "ADHD group takes med",
+              "ADHD group doesn't take med",
+              "DSM-IV/DSM-IV-TR/DSM-5",
+              "Other diagnostic method",
+              "Spectrofluorimetry",
+              "LC-MS",
+              "RIA/ELISA kit",
+              "Fair or Good quality",
+              "Very poor or Poor quality"
+       )
+)
+
+# NOTE: DOPAC only has the Med subgroup analysis. Both Med levels currently
+# have k = 1, so make_sa_plot() returns an empty plot; dopac.sa.plot is
+# excluded from combined_plot_2 for that reason. If data are added and k > 1
+# for either level, add dopac.sa.plot to the combined plot list below.
+dopac.sa.plot <- make_sa_plot(
+       sa.tbl.dopac,
+       c(
+              "ADHD group takes med",
+              "ADHD group doesn't take med"
+       )
+)
+
+hva.sa.plot <- make_sa_plot(
+       sa.tbl.hva,
+       c(
+              "24-hr urine collection",
+              "Western country",
+              "Male",
+              "ADHD group takes med",
+              "DSM-IV/DSM-IV-TR/DSM-5",
+              "Other diagnostic method",
+              "Other assay method",
+              "Fair or Good quality",
+              "Very poor or Poor quality"
+       )
+)
+
+hiaa.sa.plot <- make_sa_plot(
+       sa.tbl.5hiaa,
+       c(
+              "Urine",
+              "Western country",
+              "ADHD group takes med",
+              "DSM-IV/DSM-IV-TR/DSM-5",
+              "Other assay method",
+              "Very poor or Poor quality"
+       )
+)
+
+combined_plot_2 <- plot_grid(
+       plotlist = list(
+              da.sa.plot,
+              ad.sa.plot,
+              na.sa.plot,
+              ser.sa.plot,
+              hva.sa.plot,
+              hiaa.sa.plot
+       ),
+       labels = c(
+              "A - Dopamine",
+              "B - Adrenaline",
+              "C - Noradrenaline",
+              "D - Serotonin",
+              "E - Homovanillic acid",
+              "F - 5-hydroxy-indoleacetic acid"
+       ),
+       ncol = 2,
+       nrow = 3,
+       label_size = 11,
+       hjust = 0
+)
+
+save_plot(
+       here("outputs/subgroup-analysis/combined_subgroup_analyses.pdf"),
+       combined_plot_2,
+       base_width = 13,
+       base_height = 13
+)
 
 combined_plot_2
 
-## ------------------------------------------------------------------------
+# =============================================================================
+# SESSION INFO
+# =============================================================================
 sessionInfo()

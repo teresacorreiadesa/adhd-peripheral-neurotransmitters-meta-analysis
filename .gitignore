@@ -1,8 +1,10 @@
 .DS_Store
 .Rhistory
-data/.DS_Store
-outputs/.DS_Store
-data/~other-data
-Meta-Analysis.Rproj
-~old-folder-version
+~old-data
 ~old-scripts
+data/.DS_Store
+data/~other-data
+data/~$data_meta-analysis.xlsx
+outputs/.DS_Store
+outputs/~old-versions
+Meta-Analysis.Rproj
